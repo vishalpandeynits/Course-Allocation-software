@@ -2,3 +2,15 @@
     margin: 0px;
     padding: 0px;
 }
+.main{
+    background-color: aquamarine;
+    border: 2px solid red;
+}
+.select_branch{
+    margin: 11px;
+    padding: 5px;
+    background-color: antiquewhite;
+    border: 2px solid yellow;
+    align-items: center;
+    justify-content: center;
+}

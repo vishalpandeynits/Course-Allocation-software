@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Preference</title>
+    <link rel="stylesheet" href="/css/select_preference.css">
 </head>
-<body>
-    
 
+<body>
+    <div class="main">
+        <div class="select_branch">
+            <span>Select Branch</span>
+            <select name="branch" id="branch" onchange="selectBranch();">
+                <option value="" disabled selected>Select</option>
+                <option>CE</option>
+                <option>CSE</option>
+                <option>ECE</option>
+                <option>EE</option>
+                <option>EIE</option>
+                <option>ME</option>
+            </select>
+        </div>
+        <div class="choose_cc">
+            <h1>Select Preference for Core Courses</h1>
+
+            <span>Preference-1</span>
+            <span>UG/PG</span>
+            <select name="ug_pg" id="ug_pg" onchange="selectUgPg();populateSem(this.value);">
+                <option value="" disabled selected>Select</option>
+                <option>UG</option>
+                <option>PG</option>
+            </select>
+            <select name="semester" id="semester" onchange="selectSem();populateCourses(branch, ug_pg, this.value);">
+                <option value="" disabled selected>Select</option>
+            </select>
+            <select name="coreCourses" id="coreCourses">
+                <option value="" disabled selected>Select</option>
+            </select>
+        </div>
+    </div>
     <script src="/js/select_preference.js"></script>
 </body>
+
 </html>
