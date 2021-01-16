@@ -16,7 +16,7 @@
     min-width: 80%;
     margin: 11px;
     padding: 11px;
-    font-size: 1.3rem;
+    font-size: 25px;
     background-color: rgb(214, 241, 187);
     border-radius: 11px;
     justify-content: space-evenly;
@@ -39,7 +39,7 @@
 .pre{
     display: flex;
     flex-direction: row;
-    font-size: 1.1rem;
+    font-size: 21px;
     justify-content: space-between;
     min-width: 91%;
     padding: 11px;
@@ -57,7 +57,7 @@
 }
 
 #btn{
-    font-size: 1.3rem;
+    font-size: 25px;
     font-weight: bold;
     padding: 5px;
     background-color: rgb(232, 240, 186);
