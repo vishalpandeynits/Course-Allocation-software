@@ -1,16 +1,75 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: "Book Antiqua";
 }
 .main{
-    background-color: aquamarine;
-    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(232, 240, 186);
+    height: 100vh;
+    align-items: center;
+    /* justify-content: center; */
 }
 .select_branch{
+    display: flex;
+    min-width: 80%;
     margin: 11px;
-    padding: 5px;
-    background-color: antiquewhite;
-    border: 2px solid yellow;
+    padding: 11px;
+    font-size: 1.3rem;
+    background-color: rgb(214, 241, 187);
+    border-radius: 11px;
+    justify-content: space-evenly;
+    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+}
+
+.choose{
+    display: flex;
+    flex-direction: column;
+    min-width: 85%;
+    padding: 11px 21px;
     align-items: center;
+}
+
+.choose_pre{
+    min-width: 95%;
+    border-radius: 11px;
+    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+}
+.pre{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.1rem;
+    justify-content: space-between;
+    min-width: 91%;
+    padding: 11px;
+}
+.preSub{
+    display: flex;
+    padding: 5px 11px;
+    justify-content: space-between;
+}
+
+.preView{
+    display: flex;
+    margin: 21px;
     justify-content: center;
+}
+
+#btn{
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 5px;
+    background-color: rgb(232, 240, 186);
+    border: 5px solid rgb(214, 241, 187);
+    border-radius: 11px;
+    box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.3);
+}
+#btn:hover{
+    cursor: pointer;
+    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+
+}
+#btn:focus{
+    outline: 0px;
 }
