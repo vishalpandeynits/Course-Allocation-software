@@ -1,9 +1,13 @@
 @media (max-width: 751px){
+    .main{
+        height: 1551px;
+        justify-content: flex-start;
+    }
     .select_branch{
         justify-content: space-around;
     }
     h1{
-        font-size: 1.5rem;
+        font-size: 31px;
     }
     .pre{
         flex-direction: column;
