@@ -41,7 +41,7 @@ h1{
 .choose{
     display: flex;
     flex-direction: column;
-    min-width: 85%;
+    min-width: 90%;
     padding: 11px 21px;
     align-items: center;
 }
