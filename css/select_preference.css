@@ -1,8 +1,20 @@
 *{
     margin: 0px;
     padding: 0px;
-    font-family: "Book Antiqua";
+    font-family: ubuntu-reg;
 }
+@font-face {
+    font-family: ubuntu-reg;
+    src: url(../fonts/Ubuntu-Regular.ttf);
+  }
+@font-face {
+    font-family: ubuntu-med;
+    src: url(../fonts/Ubuntu-Medium.ttf);
+  }
+@font-face {
+    font-family: ubuntu-bold;
+    src: url(../fonts/Ubuntu-Bold.ttf);
+  }
 .main{
     display: flex;
     flex-direction: column;
@@ -17,12 +29,15 @@
     margin: 11px;
     padding: 11px;
     font-size: 25px;
+    font-weight: bold;
     background-color: rgb(214, 241, 187);
     border-radius: 11px;
     justify-content: space-evenly;
     box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
 }
-
+h1{
+    font-family: ubuntu-bold;
+}
 .choose{
     display: flex;
     flex-direction: column;
