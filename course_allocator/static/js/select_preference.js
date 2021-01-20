@@ -330,7 +330,7 @@ function populateCoreCourses(selectedBranch, selectedUg_pg, selectedSemester, se
 }
 
 function populateElectiveCourses(selectedBranch, selectedUg_pg, selectedSemester, selectedCourse) {
-    selectedBranch = document.getElementById('branch').value;
+    selectedBranch = document.getElementById('branch').innerHTML;
     selectedUg_pg = document.getElementById(selectedUg_pg).value;
     selectedSemester = document.getElementById(selectedSemester).value;
 

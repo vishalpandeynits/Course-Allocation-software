@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}LOGIN{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" method="POST"> {% csrf_token %}
+      <span id="login-error"></span>
+      <input type="email" name="username" placeholder="Institute-mail"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="{% url 'signup' %}">Create an account</a></p>
+      <p class="message"><a class="redirect" href="{% url 'password_reset' %}">Forgot Password?</a></p>
+    </form>
+  </div>
+</div>
+{% endblock %}

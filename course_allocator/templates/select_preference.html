@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    #branch{
+        border:none;
+        background:none;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+</style>
+<div id="select-preference" class="main">
+
+    <div class="select_branch">
+        <button id="branch" value="{{profile.department}}">Branch : {{ profile.get_department_display }} </button>
+    </div>
+    <form method="POST">{% csrf_token %}
+
+    </form>
+
+    <div class="choose">
+        <h1>Select Preference for Core Courses</h1>
+
+        <div class="choose_pre">
+            <div class="pre">
+                <span>Preference-1</span>
+                <div class="preSub">
+                    <span>UG/PG : </span>
+                    <select class="ug_pg" name="ug_pg_cc_pre1" id="ug_pg_cc_pre1"
+                        onchange="populateSem(this.value, 'semester_cc_pre1');">
+                        <option value="" disabled selected>Select</option>
+                        <option value="UG">Under Graduate</option>
+                        <option value="PG">Post Graduate</option>
+                    </select>
+                </div>
+                <div class="preSub">
+                    <span>Select Semester : </span>
+                    <select class="semester" name="semester_cc_pre1" id="semester_cc_pre1"
+                        onchange="populateCoreCourses(selectedBranch, 'ug_pg_cc_pre1', 'semester_cc_pre1', 'coreCourses_cc_pre1');">
+                        <option value="" disabled selected>Select</option>
+                    </select>
+                </div>
+                <div class="preSub">
+                    <span>Select Course : </span>
+                    <select class="course" name="coreCourses_cc_pre1" id="coreCourses_cc_pre1">
+                        <option value="" disabled selected>Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pre">
+                <span>Preference-2</span>
+                <div class="preSub">
+                    <span>UG/PG : </span>
+                    <select class="ug_pg" name="ug_pg_cc_pre2" id="ug_pg_cc_pre2"
+                        onchange="populateSem(this.value, 'semester_cc_pre2');">
+                        <option value="" disabled selected>Select</option>
+                        <option value="UG">Under Graduate</option>
+                        <option value="PG">Post Graduate</option>
+                    </select>
+                </div>
+                <div class="preSub">
+                    <span>Select Semester : </span>
+                    <select class="semester" name="semester_cc_pre2" id="semester_cc_pre2"
+                    onchange="populateCoreCourses(selectedBranch, 'ug_pg_cc_pre2', 'semester_cc_pre2', 'coreCourses_cc_pre2');">
+                        <option value="" disabled selected>Select</option>
+                    </select>
+                </div>
+                <div class="preSub">
+                    <span>Select Course : </span>
+                    <select class="course" name="coreCourses_cc_pre2" id="coreCourses_cc_pre2">
+                        <option value="" disabled selected>Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pre">
+                <span>Preference-3</span>
+                <div class="preSub">
+                    <span>UG/PG : </span>
+                    <select class="ug_pg" name="ug_pg_cc_pre3" id="ug_pg_cc_pre3"
+                        onchange="populateSem(this.value, 'semester_cc_pre3');">
+                        <option value="" disabled selected>Select</option>
+                        <option value="UG">Under Graduate</option>
+                        <option value="PG">Post Graduate</option>
+                    </select>
+                </div>
+                <div class="preSub">
+                    <span>Select Semester : </span>
+                    <select class="semester" name="semester_cc_pre3" id="semester_cc_pre3"
+                    onchange="populateCoreCourses(selectedBranch, 'ug_pg_cc_pre3', 'semester_cc_pre3', 'coreCourses_cc_pre3');">
+                        <option value="" disabled selected>Select</option>
+                        
+                    </select>
+                </div>
+                <div class="preSub">
+                    <span>Select Course : </span>
+                    <select class="course" name="coreCourses_cc_pre3" id="coreCourses_cc_pre3">
+                        <option value="" disabled selected>Select</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="preView">
+        <button id="btn" onclick="">Preview</button>
+    </div>
+</div>
+<script>
+populateUg_pg();
+</script>
+ {% endblock %}
+ <div class="choose">
+    <h1>Select Preference for Elective Courses</h1>
+    <div class="choose_pre">
+        <div class="pre">
+            <span>Preference-1</span>
+            <div class="preSub">
+                <span>UG/PG : </span>
+                <select class="ug_pg" name="ug_pg_ec_pre1" id="ug_pg_ec_pre1"
+                    onchange="populateSem(this.value, 'semester_ec_pre1');">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            <div class="preSub">
+                <span>Select Semester : </span>
+                <select class="semester" name="semester_ec_pre1" id="semester_ec_pre1"
+                onchange="populateElectiveCourses(selectedBranch, 'ug_pg_ec_pre1', 'semester_ec_pre1', 'electiveCourses_ec_pre1');">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            <div class="preSub">
+                <span>Select Course : </span>
+                <select class="course" name="electiveCourses_ec_pre1" id="electiveCourses_ec_pre1">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="pre">
+            <span>Preference-2</span>
+            <div class="preSub">
+                <span>UG/PG : </span>
+                <select class="ug_pg" name="ug_pg_ec_pre2" id="ug_pg_ec_pre2"
+                    onchange="populateSem(this.value, 'semester_ec_pre2');">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            <div class="preSub">
+                <span>Select Semester : </span>
+                <select class="semester" name="semester_ec_pre2" id="semester_ec_pre2"
+                onchange="populateElectiveCourses(selectedBranch, 'ug_pg_ec_pre2', 'semester_ec_pre2', 'electiveCourses_ec_pre2');">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            <div class="preSub">
+                <span>Select Course : </span>
+                <select class="course" name="electiveCourses_ec_pre2" id="electiveCourses_ec_pre2">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="pre">
+            <span>Preference-3</span>
+            <div class="preSub">
+                <span>UG/PG : </span>
+                <select class="ug_pg" name="ug_pg_ec_pre3" id="ug_pg_ec_pre3"
+                    onchange="populateSem(this.value, 'semester_ec_pre3');">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            <div class="preSub">
+                <span>Select Semester : </span>
+                <select class="semester" name="semester_ec_pre3" id="semester_ec_pre3"
+                onchange="populateElectiveCourses(selectedBranch, 'ug_pg_ec_pre3', 'semester_ec_pre3', 'electiveCourses_ec_pre3');">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            <div class="preSub">
+                <span>Select Course : </span>
+                <select class="course" name="electiveCourses_ec_pre3" id="electiveCourses_ec_pre3">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+</div>

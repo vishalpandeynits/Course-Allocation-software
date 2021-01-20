@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block css %}{% endblock %}
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+        <link rel="stylesheet" href="{% static 'css/select_preference.css' %}">
+        <link rel="stylesheet" href="{% static 'css/select_preference_res.css' %}">
+        <script src="{% static 'js/select_preference.js' %}"></script>
+    </head>
+    <body>
+        {% include 'navigation.html' %}
+        {% block content %}
+        {% endblock %}
+        
+    </body>
+</html>

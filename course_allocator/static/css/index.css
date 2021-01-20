@@ -1,0 +1,16 @@
+*{
+    margin:0;
+    padding:0;
+}
+.navigation{
+    display: flex;
+    justify-content: flex-end;
+    padding:20px;
+    background:rgb(29, 226, 226)
+}
+.navigation>a{
+    margin:0px 15px;
+    text-decoration:none;
+    font-weight:1.3em;
+    text-transform: uppercase;
+}

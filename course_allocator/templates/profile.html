@@ -1,8 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-    <h1> I am Vishal </h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="profile">
+
+    <div class="header">
+        <!-- <div class="profilePic">
+            
+        </div> -->
+        <div class="username">
+            {{ profile.username }}
+        </div>
+        <div class="designation">
+            {{ profile.get_designation_display }}
+        </div>
+        <div class="button">
+            <a href="#" class="edit"><img src="/84380.svg" alt=""></a>
+        </div>
+    </div>
+    
+    <div class="mid">
+        <div class="head">
+            INFORMATION <hr>
+        </div>
+
+        <div class="firstrow">
+            <div class="department">
+                Department:
+                <p class="feed">{{ profile.get_department_display }}</p>
+            </div>
+            {% if employee_number %}
+            <div class="employid">
+                Employee Id:
+                <p class="feed">{{ profile.employee_number }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="secondrow">
+            <div class="phno">
+                Phone:
+                <p class="feed"> {{profile.phone_number}} </p>
+            </div>
+            <div class="email">
+                Email:
+                <p class="feed">{{ profile.user.email }}</p>
+            </div> 
+        </div>
+        <div>
+            <a href="{% url 'password_change' %}"> Change Password </a>
+            <a href="#"> Edit Information </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

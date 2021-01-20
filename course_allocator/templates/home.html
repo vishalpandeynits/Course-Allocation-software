@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}NITS{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+HOme page currently nothing here to show.
+{% if user.is_authenticated %}
+    You are logged in 
+{% else %}
+    You are logged out
+{% endif %}
+{% endblock %}
