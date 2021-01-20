@@ -1,56 +1,124 @@
+<<<<<<< HEAD:course_allocator/static/css/profile.css
+=======
+<<<<<<< HEAD
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    /* font-family: ; */
+    background-color: rgb(203, 216, 214);
+}
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
 
 .profile{
     display: flex;
     flex-wrap: nowrap;
     height: 500px;
     align-items: center;
+<<<<<<< HEAD:course_allocator/static/css/profile.css
     justify-content: center;
 }
 
 .profile .header{
     display: flex;
     flex-direction: column;
+=======
+    /* border: 2px solid red; */
+    justify-content: center;
+    
+}
+
+.header{
+
+    display: flex;
+    flex-direction: column;
+    
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     align-items: center;
     width: 30%;
     height: 78%;
     background-color: rgb(99, 185, 232);
     padding: 20px;
     box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2), 2px 6px 20px 0 rgba(0, 0, 0, 0.19);
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 }
 
 .profile .mid{
     display: flex;
     flex-direction: column; 
+=======
+    
+}
+
+.mid{
+    display: flex;
+    flex-direction: column;
+    
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     width: 50%;
     height: 78%;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(226, 28, 28, 0.2), 17px 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 0px;
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 }
 
 .profile .profilePic{
+=======
+    
+}
+
+
+
+
+
+.profilePic{
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     border-radius: 50%;
     width: 184px;
     height: 185px;
     background-image: url("/index.jpg");
     background-size: cover;
 }
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 .profile  .username{
+=======
+
+.username{
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     font-family: 'PT Sans', sans-serif;
     margin: 6px;
     color: white;
     font-size: 23px;
 }
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 .profile  .designation{
     font-family: 'PT Sans', sans-serif;
     color: rgb(214, 229, 232);
 }
 .profile  .button img {
+=======
+
+.designation{
+    font-family: 'PT Sans', sans-serif;
+    color: rgb(214, 229, 232);
+}
+
+.button img {
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     margin: 26px;
     width: 31px;
     height: 31px;
 }
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 .profile .head{
+=======
+
+.head{
+    /* border: 3px solid black; */
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     width: 100%;
     height: 15%;
     font-size: 35px;
@@ -60,16 +128,30 @@
     color: rgb(141, 139, 143);
 }
 
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 .profile  hr{
+=======
+hr{
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     border: -10px solid rgb(188, 209, 188);
     border-radius: 5px;
     width: 141.766px;
     margin-top: 1px;
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 }
 
 .profile  .firstrow{
     display: flex;
     flex-direction: row;
+=======
+    
+}
+
+.firstrow{
+    display: flex;
+    flex-direction: row;
+    /* border: 3px solid black; */
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     width: 100%;
     height: 44%;
     font-family: 'Oswald', sans-serif;
@@ -79,6 +161,7 @@
     padding-top: 16px;
 }
 
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 .profile .department{
     width: 50%;
 }
@@ -88,6 +171,18 @@
 .profile .secondrow{
     display: flex;
     flex-direction: row;
+=======
+.department{
+    width: 50%;
+}
+.employid{
+    width: 50%;
+}
+.secondrow{
+    display: flex;
+    flex-direction: row;
+    /* border: 3px solid black; */
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     width: 100%;
     height: 30%;
     font-family: 'Oswald', sans-serif;
@@ -95,6 +190,7 @@
     font-size: 32px;
     padding-left: 10px;
 }
+<<<<<<< HEAD:course_allocator/static/css/profile.css
 .profile .phno{
     width: 50%;
 }
@@ -104,6 +200,19 @@
 }
 
 .profile .feed{
+=======
+
+.phno{
+    width: 50%;
+}
+
+.email{
+    width: 50%;
+}
+
+
+.feed{
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(176, 183, 184);
     font-size: 19px;
@@ -118,6 +227,7 @@
       height: 100vh;
       width: 100%;
     }
+<<<<<<< HEAD:course_allocator/static/css/profile.css
     .profile .header{
         width: 100%;
         height: 62vh;
@@ -140,3 +250,202 @@
         font-size: 22px;
     }
 }
+=======
+    .header{
+        width: 100%;
+        height: 62vh;
+    }
+    .mid{
+        width: 100%;
+    }
+    hr{
+        width: 122.156px;
+    }
+    
+    .head{
+        font-size: 24px;
+    }
+
+    .firstrow{
+        font-size: 22px;
+    }
+    .secondrow{
+        font-size: 22px;
+    }
+}
+||||||| 7b94609
+=======
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    /* font-family: ; */
+    background-color: rgb(203, 216, 214);
+}
+
+.profile{
+    display: flex;
+    flex-wrap: nowrap;
+    height: 500px;
+    align-items: center;
+    /* border: 2px solid red; */
+    justify-content: center;
+    
+}
+
+.header{
+
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    width: 30%;
+    height: 78%;
+    background-color: rgb(99, 185, 232);
+    padding: 20px;
+    box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2), 2px 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}
+
+.mid{
+    display: flex;
+    flex-direction: column;
+    
+    width: 50%;
+    height: 78%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(226, 28, 28, 0.2), 17px 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0px;
+    
+}
+
+
+
+
+
+.profilePic{
+    border-radius: 50%;
+    width: 184px;
+    height: 185px;
+    background-image: url("/index.jpg");
+    background-size: cover;
+}
+
+.username{
+    font-family: 'PT Sans', sans-serif;
+    margin: 6px;
+    color: white;
+    font-size: 23px;
+}
+
+.designation{
+    font-family: 'PT Sans', sans-serif;
+    color: rgb(214, 229, 232);
+}
+
+.button img {
+    margin: 26px;
+    width: 31px;
+    height: 31px;
+}
+
+.head{
+    /* border: 3px solid black; */
+    width: 100%;
+    height: 15%;
+    font-size: 35px;
+    text-align: center;
+    padding-top: 5px;
+    font-family: 'Oswald', sans-serif;
+    color: rgb(141, 139, 143);
+}
+
+hr{
+    border: -10px solid rgb(188, 209, 188);
+    border-radius: 5px;
+    width: 141.766px;
+    margin-top: 1px;
+    
+}
+
+.firstrow{
+    display: flex;
+    flex-direction: row;
+    /* border: 3px solid black; */
+    width: 100%;
+    height: 44%;
+    font-family: 'Oswald', sans-serif;
+    color: rgb(109, 105, 100);
+    font-size: 32px;
+    padding-left: 10px;
+    padding-top: 16px;
+}
+
+.department{
+    width: 50%;
+}
+.employid{
+    width: 50%;
+}
+.secondrow{
+    display: flex;
+    flex-direction: row;
+    /* border: 3px solid black; */
+    width: 100%;
+    height: 30%;
+    font-family: 'Oswald', sans-serif;
+    color: rgb(109, 105, 100);
+    font-size: 32px;
+    padding-left: 10px;
+}
+
+.phno{
+    width: 50%;
+}
+
+.email{
+    width: 50%;
+}
+
+
+.feed{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(176, 183, 184);
+    font-size: 19px;
+    word-wrap: break-word;
+    padding-right: 10px;
+}
+
+
+@media screen and (max-width: 814px) {
+    .profile {   
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+    }
+    .header{
+        width: 100%;
+        height: 62vh;
+    }
+    .mid{
+        width: 100%;
+    }
+    hr{
+        width: 122.156px;
+    }
+    
+    .head{
+        font-size: 24px;
+    }
+
+    .firstrow{
+        font-size: 22px;
+    }
+    .secondrow{
+        font-size: 22px;
+    }
+}
+>>>>>>> fa64eba15b33ae3e55cba365e24fc7ed3985a301
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9:Profile Page/style.css

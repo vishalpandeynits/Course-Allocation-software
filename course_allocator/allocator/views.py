@@ -46,3 +46,15 @@ def preference_page(request):
 	}
 	return render(request,'select_preference.html',params)
 
+<<<<<<< HEAD
+=======
+def niranjan(request):
+    return render(request,'profile.html')
+    # return HttpResponse("<h1 style='color:red;'>I am niranjan</h1>")
+
+def vishal(request):
+    params={
+        "name" : "vishal Pandey"
+    } 
+    return render(request,'vishal.html',params) 
+>>>>>>> 335ae222f0ddda46e4d2b073e3918cff291ff9f9
