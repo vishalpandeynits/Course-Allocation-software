@@ -1,0 +1,90 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: ubuntu-reg;
+}
+@font-face {
+    font-family: ubuntu-reg;
+    src: url(../fonts/Ubuntu-Regular.ttf);
+  }
+@font-face {
+    font-family: ubuntu-med;
+    src: url(../fonts/Ubuntu-Medium.ttf);
+  }
+@font-face {
+    font-family: ubuntu-bold;
+    src: url(../fonts/Ubuntu-Bold.ttf);
+  }
+.main{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(232, 240, 186);
+    height: 100vh;
+    align-items: center;
+    /* justify-content: center; */
+}
+.select_branch{
+    display: flex;
+    min-width: 80%;
+    margin: 11px;
+    padding: 11px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: rgb(214, 241, 187);
+    border-radius: 11px;
+    justify-content: space-evenly;
+    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+}
+h1{
+    font-family: ubuntu-bold;
+}
+.choose{
+    display: flex;
+    flex-direction: column;
+    min-width: 90%;
+    padding: 11px 21px;
+    align-items: center;
+}
+
+.choose_pre{
+    min-width: 95%;
+    border-radius: 11px;
+    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+}
+.pre{
+    display: flex;
+    flex-direction: row;
+    font-size: 21px;
+    justify-content: space-between;
+    min-width: 91%;
+    padding: 11px;
+}
+.preSub{
+    display: flex;
+    padding: 5px 11px;
+    justify-content: space-between;
+}
+
+.preView{
+    display: flex;
+    margin: 21px;
+    justify-content: center;
+}
+
+#btn{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: rgb(232, 240, 186);
+    border: 5px solid rgb(214, 241, 187);
+    border-radius: 11px;
+    box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.3);
+}
+#btn:hover{
+    cursor: pointer;
+    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+
+}
+#btn:focus{
+    outline: 0px;
+}
