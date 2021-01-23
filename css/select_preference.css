@@ -1,90 +1,95 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    font-family: ubuntu-reg;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: ubuntu-reg;
 }
 @font-face {
-    font-family: ubuntu-reg;
-    src: url(../fonts/Ubuntu-Regular.ttf);
-  }
+  font-family: ubuntu-reg;
+  src: url(../fonts/Ubuntu-Regular.ttf);
+}
 @font-face {
-    font-family: ubuntu-med;
-    src: url(../fonts/Ubuntu-Medium.ttf);
-  }
+  font-family: ubuntu-med;
+  src: url(../fonts/Ubuntu-Medium.ttf);
+}
 @font-face {
-    font-family: ubuntu-bold;
-    src: url(../fonts/Ubuntu-Bold.ttf);
-  }
-.main{
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(232, 240, 186);
-    height: 100vh;
-    align-items: center;
-    /* justify-content: center; */
+  font-family: ubuntu-bold;
+  src: url(../fonts/Ubuntu-Bold.ttf);
 }
-.select_branch{
-    display: flex;
-    min-width: 80%;
-    margin: 11px;
-    padding: 11px;
-    font-size: 25px;
-    font-weight: bold;
-    background-color: rgb(214, 241, 187);
-    border-radius: 11px;
-    justify-content: space-evenly;
-    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(232, 240, 186);
+  align-items: center;
 }
-h1{
-    font-family: ubuntu-bold;
+.select_branch {
+  display: flex;
+  min-width: 70%;
+  margin: 11px;
+  padding: 11px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: rgb(214, 241, 187);
+  border-radius: 11px;
+  justify-content: space-evenly;
+  box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
 }
-.choose{
-    display: flex;
-    flex-direction: column;
-    min-width: 85%;
-    padding: 11px 21px;
-    align-items: center;
+h1 {
+  font-family: ubuntu-bold;
+  padding-bottom: 11px;
 }
-
-.choose_pre{
-    min-width: 95%;
-    border-radius: 11px;
-    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
-}
-.pre{
-    display: flex;
-    flex-direction: row;
-    font-size: 21px;
-    justify-content: space-between;
-    min-width: 91%;
-    padding: 11px;
-}
-.preSub{
-    display: flex;
-    padding: 5px 11px;
-    justify-content: space-between;
+.choose {
+  display: flex;
+  flex-direction: column;
+  min-width: 70%;
+  padding: 11px 21px;
+  align-items: center;
 }
 
-.preView{
-    display: flex;
-    margin: 21px;
-    justify-content: center;
+.choose_pre {
+  display: flex;
+  flex-direction: column;
+  min-width: 85%;
+  padding: 11px;
+  border-radius: 11px;
+  box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+}
+.pre {
+  display: flex;
+  flex-direction: column;
+  font-size: 21px;
+  justify-content: space-between;
+  margin: 11px;
+  padding: 5px;
+  border-radius: 11px;
+  background-color: rgb(241, 228, 169);
+  box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.3);
+}
+.preSub {
+  display: flex;
+  padding: 11px 41px;
+  justify-content: space-between;
 }
 
-#btn{
-    font-size: 25px;
-    font-weight: bold;
-    padding: 5px;
-    background-color: rgb(232, 240, 186);
-    border: 5px solid rgb(214, 241, 187);
-    border-radius: 11px;
-    box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.3);
+.preView {
+  display: flex;
+  margin: 21px;
+  justify-content: center;
 }
-#btn:hover{
-    cursor: pointer;
-    box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
 
+#btn {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: rgb(232, 240, 186);
+  border: 5px solid rgb(214, 241, 187);
+  border-radius: 11px;
+  box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.3);
 }
-#btn:focus{
-    outline: 0px;
+#btn:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+}
+#btn:focus {
+  outline: 0px;
 }

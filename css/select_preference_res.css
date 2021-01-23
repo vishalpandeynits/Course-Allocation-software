@@ -1,15 +1,40 @@
-@media (max-width: 751px){
-    .main{
-        height: 1551px;
-        justify-content: flex-start;
-    }
-    .select_branch{
-        justify-content: space-around;
-    }
-    h1{
-        font-size: 31px;
-    }
-    .pre{
-        flex-direction: column;
-    }
+@media (max-width: 751px) {
+  .main {
+    justify-content: flex-start;
+  }
+  .select_branch {
+    min-width: 90%;
+    justify-content: space-between;
+    font-size: 21px;
+  }
+  h1 {
+    font-size: 21px;
+  }
+
+  .choose {
+    min-width: 100%;
+    padding: 11px;
+  }
+
+  .choose_pre {
+    padding: 0px;
+    min-width: 100%;
+  }
+
+  .pre {
+    font-size: 15px;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 11px;
+    background-color: rgb(241, 228, 169);
+    box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .preSub {
+    padding: 5px;
+  }
+
+  .courseAlign {
+    flex-direction: column;
+  }
 }
