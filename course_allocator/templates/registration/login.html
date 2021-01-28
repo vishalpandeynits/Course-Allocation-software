@@ -9,8 +9,7 @@
   <div class="form">
     <form class="login-form" method="POST"> {% csrf_token %}
       <span id="login-error"></span>
-      <input type="email" name="username" placeholder="Institute-mail"/>
-      <input type="password" name="password" placeholder="password"/>
+      {{ form }}
       <button>login</button>
       <p class="message">Not registered? <a href="{% url 'signup' %}">Create an account</a></p>
       <p class="message"><a class="redirect" href="{% url 'password_reset' %}">Forgot Password?</a></p>

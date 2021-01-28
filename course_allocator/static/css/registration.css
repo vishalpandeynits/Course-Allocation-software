@@ -13,6 +13,11 @@
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
+  .login-page li{
+    list-style-type: none;
+    color:red;
+    font-weight:bolder;
+  }
   .login-page .form input {
     outline: 0;
     background: #f2f2f2;
@@ -38,7 +43,7 @@
   }
   .login-page label {
     display: block;
-    margin-bottom: 17px;
+    margin-bottom: 5px;
     text-align: left;
 }
 

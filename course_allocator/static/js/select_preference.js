@@ -18,10 +18,14 @@ var semBy = {
 function populateSem(value, semester) {
 
     var semOptions = "<option value='' disabled selected>Select</option>";
+    var select = "<option disabled selected>Select</option>"
     for (semId in semBy[value]) {
         semOptions = semOptions + "<option>" + semBy[value][semId] + "</option>";
     }
     document.getElementById(semester).innerHTML = semOptions;
+    for (var i = 0; i < 6; i++) {
+        document.getElementsByClassName('course')[i].innerHTML = select;
+    }
 
 }
 
@@ -166,23 +170,78 @@ var eePgElectiveCourses = {
 var eieUgCoreCourses = {
     '1st': ['MA101', 'PH101', 'ME101'],
     '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '3rd': ['EI201 - Electrical & Electronic Measurements',
+        'EI202 - Analog Electronics',
+        'EI203 - Circuits & Networks',
+        'EI211 - Measurement Lab',
+        'EI212 - Analog Electronics Lab',
+        'EI213 - Circuits & Networks Lab',
+        'MA201 - Mathematics III',
+        'CSxxx - Data Structures',
+        'CSxxx - Programming & Data Structures Lab'],
+
+    '4th': ['EI204 - Sensors and Transducers',
+        'EI205 - Signals and Systems',
+        'EI206 - Control System-I',
+        'EI207 - Digital Electronics',
+        'EI208 - Power Electronics & Drives',
+        'EI214 - Sensor and Transducers lab',
+        'EI215 - Control System Lab',
+        'EI216 - Digital Electronics Lab',
+        'EI217 - Power Electronics Lab'],
+
+    '5th': ['EI301 - Industrial Instrumentation-I',
+        'EI302 - Microprocessors & Micro Controllers',
+        'EI303 - Biomedical Instrumentation',
+        'EI304 - Control System-II',
+        'EI305 - Communication & Telemetry',
+        'EI311 - Microprocessors & Micro Controllers Lab',
+        'EI312 - Biomedical Instrumentation Lab',
+        'EI313 - Communication & Telemetry Lab',
+        'EI314 - Virtual Instrumentation Lab'],
+
+    '6th': ['EI306 - Industrial Instrumentation-II',
+        'EI307 - Process Control Engineering',
+        'EI308 - Digital Signal Processing',
+        'EI316 - Instrumentation Lab',
+        'EI317 - Digital Signal Processing Lab',
+        'EI318 - Simulation, Design & Fabrication Lab'],
+
+    '7th': ['EI401 - Analytical & Optical Instrumentation',
+        'HSxxx - Managerial Economics'],
+
+    '8th': ['HSxxx - Business Management'],
 }
 
 var eieUgElectiveCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '1st': ['NA'],
+    '2nd': ['NA'],
+    '3rd': ['NA'],
+    '4th': ['NA'],
+    '5th': ['NA'],
+    '6th': ['EI321 - IC and VLSI Design',
+        'EI322 - Power Plant Instrumentation',
+        'EI323 - Computer networks',
+        'EI324 - PC Based Instrumentation',
+        'EI325 - Electro-Magnetic Field Theory',
+        'EI326 - Smart Sensors',
+        'EI327 - Optimization techniques'],
+
+    '7th': ['EI421 - Advanced Instrumentation',
+        'EI422 - Biomedical signal processing',
+        'EI423 - Real Time Embedded Systems',
+        'EI424 - IoT based Instrumentation',
+        'EI425 - MEMS & Nanotechnology',
+        'EI426 - Non Linear control systems',
+        'EI427 - Linear Integrated Circuits'],
+
+    '8th': ['EI441 - Advanced Sensors and Signal Processing',
+        'EI442 - Piping and Instrumentation',
+        'EI443 - Industrial Automation',
+        'EI444 - Wireless Communication',
+        'EI445 - Adaptive Control',
+        'EI446 - Analog Integrated Circuit Design',
+        'EI447 - Mechatronics'],
 }
 
 var eiePgCoreCourses = {
@@ -283,7 +342,7 @@ function populateCoreCourses(selectedBranch, selectedUg_pg, selectedSemester, se
             courseOptions = courseOptions + "<option>" + meUgCoreCourses[selectedSemester][eachCourses] + "</option>"
         }
     }
-    
+
     else if (selectedBranch == 'CE' && selectedUg_pg == 'PG') {
 
         for (var eachCourses in cePgCoreCourses[selectedSemester]) {

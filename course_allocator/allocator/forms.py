@@ -40,3 +40,8 @@ class ProfileRegisterForm(forms.ModelForm):
     class Meta:
         model = Profile 
         fields = ('department','phone_number','designation','employee_number')
+
+class UserLoginForm(AuthenticationForm):
+	def __init__(self, *args, **kwargs):
+		super(UserLoginForm, self).__init__(*args, **kwargs)
+		self.fields['username'].label = 'Username/Email:'
