@@ -39,5 +39,6 @@ class Preference(models.Model):
     semester = models.CharField(max_length=3)
     course_name = models.CharField(max_length=100)
     ug_pg = models.CharField(max_length = 30,choices = graduate_choice)
+    
     def __str__(self):
         return f'{self.user.username}'

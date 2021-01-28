@@ -6,8 +6,20 @@ from django.urls import reverse
 from .models import *
 
 def home(request):
-    params = {}
-    return render(request,'home.html',params)
+	params ={
+		'hi':'hello'
+	}
+	# if request.user.is_authenticated:
+	# 	profile = Profile.objects.get(user=request.user)
+	# 	if profile.designation=='HOD':
+	# 		teachers = Profile.objects.filter(department = profile.department)
+	# 		preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num')
+	# 		params = {
+	# 			'preferences':preferences,
+	# 			'teachers':teachers
+	# 			}
+	# 	return render(request,'home.html',params)
+	return render(request,'home.html',params)
 
 def signup(request):
 	if request.user.is_authenticated:
@@ -17,10 +29,11 @@ def signup(request):
 		advanceform = ProfileRegisterForm(request.POST , request.FILES)
 		if basicform.is_valid() and advanceform.is_valid():
 			basicdata = basicform.save(commit=False)
+			basicdata.username = basicdata.email.split('@')[0]
 			user_data = basicdata.username
-			basicdata.save()
 			advance_data = advanceform.save(commit=False)
 			advance_data.user = User.objects.get(username=user_data)
+			basicdata.save()
 			advance_data.save()
 			return redirect('/')
 	else:
@@ -34,8 +47,9 @@ def profile_page(request,username):
 	profile = Profile.objects.get(user=user)
 	params = {
 		'profile':profile,
-		'requested_user':user
+		'requested_user':user,
 	}
+	
 	return render(request,'profile.html',params)
 @login_required
 def preference_page(request):
@@ -73,9 +87,4 @@ def preference_page(request):
 		Preference.objects.create(user=request.user,preference_num = '1',course_type='elective', semester = semester4, course_name = course4, ug_pg = ug_pg4)
 		Preference.objects.create(user=request.user,preference_num = '2',course_type='elective', semester = semester5, course_name = course5, ug_pg = ug_pg5)
 		Preference.objects.create(user=request.user,preference_num = '3',course_type='elective', semester = semester6, course_name = course6, ug_pg = ug_pg6)
-
-
-	params = {
-		'profile':profile,
-	}
-	return render(request,'select_preference.html',params)
+	return render(request,'select_preference.html')

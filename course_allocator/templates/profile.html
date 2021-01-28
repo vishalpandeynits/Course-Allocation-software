@@ -40,12 +40,11 @@
                 Department:
                 <p class="feed">{{ profile.get_department_display }}</p>
             </div>
-            {% if profile.employee_number %}
-            <div class="employid">
-                Employee Id:
-                <p class="feed">{{ profile.employee_number }}</p>
+            
+            <div class="email">
+                Email:
+                <p class="feed">{{ profile.user.email }}</p>
             </div>
-            {% endif %}
         </div>
 
         <div class="secondrow">
@@ -53,10 +52,7 @@
                 Phone:
                 <p class="feed"> {{profile.phone_number}} </p>
             </div>
-            <div class="email">
-                Email:
-                <p class="feed">{{ profile.user.email }}</p>
-            </div> 
+ 
         </div>
         <div id="button-container">
             <a href="{% url 'password_change' %}"> Change Password </a>

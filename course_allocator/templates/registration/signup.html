@@ -3,21 +3,8 @@
 <div class="login-page">
     <div class="form">
         <h3 class="text-center lead"> SIGN UP</h3>
-        <form class="login-form" method="post" novalidate >{% csrf_token %}
-            <label for="id_username">Username:</label> 
-            <input type="text" name="username" maxlength="150" autofocus required id="id_username"><br>
-
-            <label for="id_first_name">First name:</label> 
-            <input type="text" name="first_name" maxlength="150" required="required" id="id_first_name"><br>
-            <label for="id_last_name">Last name:</label> 
-            <input type="text" name="last_name" maxlength="150" required="required" id="id_last_name"><br>
-            <label for="id_email">Email address:</label> 
-            <input type="email" name="email" maxlength="254" required="required" id="id_email"><br>
-            <label for="id_password1">Password:</label> 
-            <input type="password" name="password1" autocomplete="new-password" required id="id_password1"><br>
-            <label for="id_password2">Confirm Password:</label> 
-            <input type="password" name="password2" autocomplete="new-password" required id="id_password2"><br>
-            
+        <form class="login-form" method="post">{% csrf_token %}
+            {{ form.as_p }}
             <label for="id_department">Department:</label> 
             <select name="department" required id="id_department">
                 <option value="" selected>--Select--</option>
@@ -39,10 +26,6 @@
                 <option value="AP">Associate Professor</option>
                 <option value="P">Professor</option>
             </select><br>
-            
-            <label for="id_employee_number">Employee number:</label> 
-            <input type="text" name="employee_number" maxlength="10" id="id_employee_number"><br>
-
             <input id="submit" type="submit" value="SAVE USER">
          </form>
   </div>
