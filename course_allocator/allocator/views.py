@@ -9,31 +9,31 @@ def home(request):
 	params ={
 		'hi':'hello'
 	}
-	# if request.user.is_authenticated:
-	# 	profile = Profile.objects.get(user=request.user)
-	# 	if profile.designation=='HOD':
-	# 		teachers = Profile.objects.filter(department = profile.department)
-	# 		preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num')
-	# 		params = {
-	# 			'preferences':preferences,
-	# 			'teachers':teachers
-	# 			}
-	# 	return render(request,'home.html',params)
+	if request.user.is_authenticated:
+		profile = Profile.objects.get(user=request.user)
+		if profile.designation=='HOD':
+			teachers = Profile.objects.filter(department = profile.department)
+			preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num')
+			params = {
+				'preferences':preferences,
+				'teachers':teachers
+				}
+		return render(request,'home.html',params)
 	return render(request,'home.html',params)
 
 def signup(request):
 	if request.user.is_authenticated:
 		return redirect(reverse('home'))
+
 	if request.method=='POST':
 		basicform= RegisterForm(request.POST, request.FILES)
 		advanceform = ProfileRegisterForm(request.POST , request.FILES)
 		if basicform.is_valid() and advanceform.is_valid():
-			basicdata = basicform.save(commit=False)
-			basicdata.username = basicdata.email.split('@')[0]
-			user_data = basicdata.username
+			user = basicform.save(commit=False)
+			user.username = user.email.split('@')[0] +'-' + user.email.split('@')[1].split('.')[0]
+			user.save()
 			advance_data = advanceform.save(commit=False)
-			advance_data.user = User.objects.get(username=user_data)
-			basicdata.save()
+			advance_data.user = user
 			advance_data.save()
 			return redirect('/')
 	else:

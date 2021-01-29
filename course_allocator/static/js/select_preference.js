@@ -1,10 +1,8 @@
 var selectedBranch;
 
 function populateUg_pg() {
-    var options = "<option disabled selected>Select</option><option>UG</option><option>PG</option>";
     var select = "<option disabled selected>Select</option>"
     for (var i = 0; i < 6; i++) {
-        document.getElementsByClassName('ug_pg')[i].innerHTML = options;
         document.getElementsByClassName('semester')[i].innerHTML = select;
         document.getElementsByClassName('course')[i].innerHTML = select;
     }

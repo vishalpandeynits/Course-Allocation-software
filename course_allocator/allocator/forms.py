@@ -26,13 +26,6 @@ class RegisterForm(UserCreationForm):
 		    pass
 		else:
 		    raise ValidationError('This Email address already exists! Try different one!')
-		try:
-		    User.objects.get(username=cleaned_data['username'])
-
-		except User.DoesNotExist:
-		    pass
-		else:
-		    raise forms.ValidationError('User already exists! Try different one!')
 		return cleaned_data
 
 class ProfileRegisterForm(forms.ModelForm):
