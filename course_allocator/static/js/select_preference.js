@@ -13,7 +13,7 @@ var semBy = {
     PG: ['1st', '2nd', '3rd', '4th'],
 }
 
-function populateSem(value, semester) {
+function populateSem(value, semester, resetCourses) {
 
     var semOptions = "<option value='' disabled selected>Select</option>";
     var select = "<option disabled selected>Select</option>"
@@ -21,9 +21,7 @@ function populateSem(value, semester) {
         semOptions = semOptions + "<option>" + semBy[value][semId] + "</option>";
     }
     document.getElementById(semester).innerHTML = semOptions;
-    for (var i = 0; i < 6; i++) {
-        document.getElementsByClassName('course')[i].innerHTML = select;
-    }
+        document.getElementById(resetCourses).innerHTML = select;
 
 }
 

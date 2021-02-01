@@ -1,20 +1,45 @@
-@media (max-width: 751px){
-    .main{
-        height: 1551px;
-        justify-content: flex-start;
-    }
-    #select-preference .select_branch{
-        justify-content: space-around;
-    }
-    #select-preference h1{
-        font-size: 31px;
-    }
-    #select-preference .pre{
-        flex-direction: column;
-        margin: 11px;
-        padding: 5px;
-        border-radius: 11px;
-        background-color:rgb(241, 228, 169);
-        box-shadow: 1px 1px 11px 1px rgba(0,0,0,0.3);
-    }
+@media (max-width: 751px) {
+  .main {
+    justify-content: flex-start;
+  }
+
+  #branch {
+    font-size: 1em;
+  }
+
+  #select-preference .select_branch {
+    min-width: 80%;
+    justify-content: space-between;
+    font-size: 21px;
+  }
+  #select-preference h1 {
+    font-size: 21px;
+  }
+
+  #select-preference .choose {
+    min-width: 100%;
+    padding: 11px;
+  }
+
+  #select-preference .choose_pre {
+    padding: 0px;
+    min-width: 100%;
+  }
+
+  #select-preference .pre {
+    font-size: 15px;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 11px;
+    background-color: rgb(241, 228, 169);
+    box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  #select-preference .preSub {
+    padding: 5px;
+  }
+
+  #select-preference .courseAlign {
+    flex-direction: column;
+  }
 }
