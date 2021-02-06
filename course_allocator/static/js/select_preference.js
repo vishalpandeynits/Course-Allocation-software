@@ -7,7 +7,7 @@ var semBy = {
 
 function populateSem(value, semester, resetCourses) {
 
-    var semOptions = "<option value='' disabled selected>Select</option>";
+    var semOptions = "<option disabled selected>Select</option>";
     var select = "<option disabled selected>Select</option>"
     for (semId in semBy[value]) {
         semOptions = semOptions + "<option>" + semBy[value][semId] + "</option>";
