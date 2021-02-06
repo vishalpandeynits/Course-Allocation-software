@@ -1,13 +1,5 @@
 var selectedBranch;
 
-function populateUg_pg() {
-    var select = "<option disabled selected>Select</option>"
-    for (var i = 0; i < 6; i++) {
-        document.getElementsByClassName('semester')[i].innerHTML = select;
-        document.getElementsByClassName('course')[i].innerHTML = select;
-    }
-}
-
 var semBy = {
     UG: ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'],
     PG: ['1st', '2nd', '3rd', '4th'],
@@ -385,7 +377,7 @@ function populateCoreCourses(selectedBranch, selectedUg_pg, selectedSemester, se
 }
 
 function populateElectiveCourses(selectedBranch, selectedUg_pg, selectedSemester, selectedCourse) {
-    selectedBranch = document.getElementById('branch').innerHTML;
+    selectedBranch = document.getElementById('branch').value;
     selectedUg_pg = document.getElementById(selectedUg_pg).value;
     selectedSemester = document.getElementById(selectedSemester).value;
 
