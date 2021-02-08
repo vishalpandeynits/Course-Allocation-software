@@ -6,17 +6,17 @@ from django.urls import reverse
 from .models import *
 
 def home(request):
-	params ={
-		'hi':'hello'
-	}
+	params = None
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user=request.user)
+		my_preferences=Preference.objects.filter(user=request.user)
 		if profile.designation=='HOD':
 			teachers = Profile.objects.filter(department = profile.department)
 			preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num')
 			params = {
 				'preferences':preferences,
-				'teachers':teachers
+				'teachers':teachers,
+				'my_preferences':my_preferences
 				}
 		return render(request,'home.html',params)
 	return render(request,'home.html',params)
@@ -24,18 +24,17 @@ def home(request):
 def signup(request):
 	if request.user.is_authenticated:
 		return redirect(reverse('home'))
-
 	if request.method=='POST':
-		basicform= RegisterForm(request.POST, request.FILES)
-		advanceform = ProfileRegisterForm(request.POST , request.FILES)
+		basicform= RegisterForm(request.POST)
+		advanceform = ProfileRegisterForm(request.POST)
 		if basicform.is_valid() and advanceform.is_valid():
 			user = basicform.save(commit=False)
+			advance_data = advanceform.save(commit=False)
 			user.username = user.email.split('@')[0] +'-' + user.email.split('@')[1].split('.')[0]
 			user.save()
-			advance_data = advanceform.save(commit=False)
 			advance_data.user = user
 			advance_data.save()
-			return redirect('/')
+			return redirect(reverse('login'))
 	else:
 		basicform= RegisterForm()
 		advanceform = ProfileRegisterForm()
@@ -49,12 +48,11 @@ def profile_page(request,username):
 		'profile':profile,
 		'requested_user':user,
 	}
-	
 	return render(request,'profile.html',params)
+
 @login_required
 def preference_page(request):
-	profile = Profile.objects.get(user = request.user)
-	branch = profile.department
+	my_preferences=Preference.objects.filter(user=request.user)
 	if request.method=="POST":
 		#core courses 
 		ug_pg1 = request.POST.get('ug_pg_cc_pre1')
@@ -87,4 +85,5 @@ def preference_page(request):
 		Preference.objects.create(user=request.user,preference_num = '1',course_type='elective', semester = semester4, course_name = course4, ug_pg = ug_pg4)
 		Preference.objects.create(user=request.user,preference_num = '2',course_type='elective', semester = semester5, course_name = course5, ug_pg = ug_pg5)
 		Preference.objects.create(user=request.user,preference_num = '3',course_type='elective', semester = semester6, course_name = course6, ug_pg = ug_pg6)
-	return render(request,'select_preference.html')
+	params={'my_preferences':my_preferences,}
+	return render(request,'select_preference.html',params)

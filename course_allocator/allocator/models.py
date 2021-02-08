@@ -41,4 +41,4 @@ class Preference(models.Model):
     ug_pg = models.CharField(max_length = 30,choices = graduate_choice)
     
     def __str__(self):
-        return f'{self.user.username}'
+        return self.user.first_name +" "+self.user.last_name

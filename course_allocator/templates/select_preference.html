@@ -1,188 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container" style="background:rgb(193, 233, 236);">
+<div class="container">
     <div class="row">
         <div style="display:none;"class="select_branch text-center">
             <button id="branch" value="{{profile.department}}">Branch : {{ profile.get_department_display }} </button>
         </div>
+        {% if my_preferences|length == 0 %}
         <div id="select-preference" class="col-md-10 col-sm-12">
-                <form id="preference-form" method="POST">{% csrf_token %}
-                    <div class="tab">
-                        <h1 class="text-center">Select Preference for Core Courses</h1>
-                        <div class="choose_pre">
-                            <div class="pre">
-                                <center> <span>Preference-1</span> </center>
-                                <div class="preSub">
-                                    <span>UG/PG : </span>
-                                    <select class="ug_pg form-control" id="ug_pg_cc_pre1" name="ug_pg_cc_pre1"
-                                        onchange="populateSem(this.value, 'semester_cc_pre1', 'coreCourses_cc_pre1');">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="UG">Under Graduate</option>
-                                        <option value="PG">Post Graduate</option>
-                                    </select>
-                                </div>
-                                <div class="preSub">
-                                    <span>Select Semester : </span>
-                                    <select class="semester form-control" id="semester_cc_pre1" name="semester_cc_pre1"
-                                        onchange="populateCoreCourses(selectedBranch, 'ug_pg_cc_pre1', 'semester_cc_pre1', 'coreCourses_cc_pre1');">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                                <div class="preSub courseAlign">
-                                    <span>Select Course : </span>
-                                    <select class="course form-control" id="coreCourses_cc_pre1" name="coreCourses_cc_pre1">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="pre">
-                                <center> <span>Preference-2</span> </center>
-                                <div class="preSub">
-                                    <span>UG/PG : </span>
-                                    <select class="ug_pg form-control" id="ug_pg_cc_pre2" name="ug_pg_cc_pre2"
-                                        onchange="populateSem(this.value, 'semester_cc_pre2', 'coreCourses_cc_pre2');">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="UG">Under Graduate</option>
-                                        <option value="PG">Post Graduate</option>
-                                    </select>
-                                </div>
-                                <div class="preSub">
-                                    <span>Select Semester : </span>
-                                    <select class="semester form-control" id="semester_cc_pre2" name="semester_cc_pre2"
-                                        onchange="populateCoreCourses(selectedBranch, 'ug_pg_cc_pre2', 'semester_cc_pre2', 'coreCourses_cc_pre2');">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                                <div class="preSub courseAlign">
-                                    <span>Select Course : </span>
-                                    <select class="course form-control" id="coreCourses_cc_pre2" name="coreCourses_cc_pre2">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="pre">
-                                <center> <span>Preference-3</span> </center>
-                                <div class="preSub">
-                                    <span>UG/PG : </span>
-                                    <select class="ug_pg form-control" id="ug_pg_cc_pre3" name="ug_pg_cc_pre3"
-                                        onchange="populateSem(this.value, 'semester_cc_pre3', 'coreCourses_cc_pre3');">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="UG">Under Graduate</option>
-                                        <option value="PG">Post Graduate</option>
-                                    </select>
-                                </div>
-                                <div class="preSub">
-                                    <span>Select Semester : </span> 
-                                    <select class="semester form-control" id="semester_cc_pre3" name="semester_cc_pre3"
-                                        onchange="populateCoreCourses(selectedBranch, 'ug_pg_cc_pre3', 'semester_cc_pre3', 'coreCourses_cc_pre3');">
-                                        <option value="" disabled selected>Select</option>
-            
-                                    </select>
-                                </div>
-                                <div class="preSub courseAlign">
-                                    <span>Select Course : </span>
-                                    <select class="course form-control" id="coreCourses_cc_pre3" name="coreCourses_cc_pre3">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-            
-                            </div>
-                        </div>
+            <form id="preference-form" method="POST">{% csrf_token %}
+                <div class="tab">
+                   {% include 'core_courses.html' %}     
+                </div>
+                <div class="choose tab">
+                    {% include 'elective_courses.html' %}    
+               </div>
+                <div class="tab">
+                    {% include 'preview.html' %}
+                </div>
+                <div style="overflow:auto;">
+                    <div style="float:right;">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                     </div>
-            
-                    <div class="choose tab">
-                        <h1>Select Preference for Elective Courses</h1>
-                        <div class="choose_pre">
-                            <div class="pre">
-                                <center> <span>Preference-1</span> </center>
-                                <div class="preSub">
-                                    <span>UG/PG : </span>
-                                    <select class="ug_pg form-control" id="ug_pg_ec_pre1" name="ug_pg_ec_pre1"
-                                        onchange="populateSem(this.value, 'semester_ec_pre1', 'electiveCourses_ec_pre1');">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="UG">Under Graduate</option>
-                                        <option value="PG">Post Graduate</option>
-                                    </select>
-                                </div>
-                                <div class="preSub">
-                                    <span>Select Semester : </span>
-                                    <select class="semester form-control" id="semester_ec_pre1" name="semester_ec_pre1"
-                                        onchange="populateElectiveCourses(selectedBranch, 'ug_pg_ec_pre1', 'semester_ec_pre1', 'electiveCourses_ec_pre1');">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                                <div class="preSub courseAlign">
-                                    <span>Select Course : </span>
-                                    <select class="course form-control" id="electiveCourses_ec_pre1" name="electiveCourses_ec_pre1">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-            
-                            </div>
-                            <div class="pre">
-                                <center> <span>Preference-2</span> </center>
-                                <div class="preSub">
-                                    <span>UG/PG : </span>
-                                    <select class="ug_pg form-control" id="ug_pg_ec_pre2" name="ug_pg_ec_pre2"
-                                        onchange="populateSem(this.value, 'semester_ec_pre2', 'electiveCourses_ec_pre2');">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="UG">Under Graduate</option>
-                                        <option value="PG">Post Graduate</option>
-                                    </select>
-                                </div>
-                                <div class="preSub">
-                                    <span>Select Semester : </span>
-                                    <select class="semester form-control" id="semester_ec_pre2" name="semester_ec_pre2"
-                                        onchange="populateElectiveCourses(selectedBranch, 'ug_pg_ec_pre2', 'semester_ec_pre2', 'electiveCourses_ec_pre2');">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                                <div class="preSub courseAlign">
-                                    <span>Select Course : </span>
-                                    <select class="course form-control" id="electiveCourses_ec_pre2" name="electiveCourses_ec_pre2">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="pre">
-                                <center> <span>Preference-3</span> </center>
-                                <div class="preSub">
-                                    <span>UG/PG : </span>
-                                    <select class="ug_pg form-control" id="ug_pg_ec_pre3" name="ug_pg_ec_pre3"
-                                        onchange="populateSem(this.value, 'semester_ec_pre3', 'electiveCourses_ec_pre3');">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="UG">Under Graduate</option>
-                                        <option value="PG">Post Graduate</option>
-                                    </select>
-                                </div>
-                                <div class="preSub">
-                                    <span>Select Semester : </span>
-                                    <select class="semester form-control" id="semester_ec_pre3" name="semester_ec_pre3"
-                                        onchange="populateElectiveCourses(selectedBranch, 'ug_pg_ec_pre3', 'semester_ec_pre3', 'electiveCourses_ec_pre3');">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                                <div class="preSub courseAlign">
-                                    <span>Select Course : </span>
-                                    <select class="course form-control" id="electiveCourses_ec_pre3" name="electiveCourses_ec_pre3">
-                                        <option value="" disabled selected>Select</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab">
-                        {% include 'preview.html' %}
-                    </div>
-                    <div style="overflow:auto;">
-                        <div style="float:right;">
-                          <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                          <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                        </div>
-                      </div>
-                </form>
+                </div>
+            </form>
         </div>
+        {% elif my_preferences|length == 6 %}
+            <h1 class="text-center"> You had already filled the preference page. Download PDF
+                <a class="btn btn primary" href="#"> Download Preview </a>
+            </h1>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

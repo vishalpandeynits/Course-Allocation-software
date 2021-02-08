@@ -1,40 +1,61 @@
 {% extends 'base.html' %}
 {% block title %}NITS{% endblock %}
-
 {% block css %}
 {% endblock %}
-
 {% block content %}
-
-    {% if user.is_authenticated %}
-    {% if profile.designation == 'HOD' %}
-    You are HOD. You have special privileges.
-    <br><br><br><br>
     <center>
-        <table style="width:80%;text-align: center;">
-            <tr>
-                <th>Faculty Name </th>
-                <th> Preference number </th>
-                <th> Course type</th>
-                <th> UG/PG </th>
-                <th> Semester </th>
-                <th> Course Name</th>
-            </tr>
-            {% for pre in preferences %}
-            <tr>
-                <td> {{pre.user.first_name }} {{pre.user.last_name }}</td>
-                <td> {{ pre.preference_num }}</td>
-                <td> {{ pre.get_course_type_display }}</td>
-                <td> {{ pre.get_ug_pg_display }}</td>
-                <td> {{pre.semester }}</td>
-                <td> {{ pre.course_name }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </center>
-{% endif %}
-    {% else %}
-        You are logged out
-    {% endif %}<br>
-
+        <h2> My Preferences </h2>
+        {% for prefer in my_preferences %}
+                {{ prefer.course_type }} {{ prefer.semester }} {{ prefer.ug_pg }} {{ prefer.course_name }}<br>
+        {% endfor %}
+    </center><br><br>
+    
+    {% if user.is_authenticated %}
+        {% if profile.designation == 'HOD' %}
+        <div id="preference-container" class="row">
+            <div class="col-md-8 col-lg-6 col-sm-12 mx-auto">
+                {% if prefernces %}
+                    <button onclick="printDiv('preference-container')">Print </button>
+                    <h4 class="text-center"> Preferences Submitted by faculties </h4>
+                {% endif %}
+                {% regroup preferences|dictsort:"user.first_name" by user.first_name as faculties %}
+                <table class="table table-hover table-light">
+                    <tbody>
+                    {% for grouper,prefer in faculties %}
+                        <thead>
+                            <th colspan="4" class="text-center">{{ grouper }}</th>
+                            <tr>
+                                <th scope="col">Course Type</th>
+                                <th scope="col">UG/PG</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Course Name</th>
+                            </tr>
+                        </thead>
+                        {% for fac in prefer %}
+                            <tr>
+                                <th scope="row">{{fac.course_type}}</th>
+                                <td>{{fac.ug_pg}}</td>
+                                <td>{{fac.semester}}</td>
+                                <td>{{fac.course_name}}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                 </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    <script>
+        function printDiv(id) { 
+            var divContents = document.getElementById(id).innerHTML; 
+            var a = window.open('', '', 'height=500, width=500'); 
+            a.document.write('<html>'); 
+            a.document.write('<body>'); 
+            a.document.write(divContents); 
+            a.document.write('</body></html>'); 
+            a.document.close(); 
+            a.print(); 
+        }
+    </script>
 {% endblock %}
