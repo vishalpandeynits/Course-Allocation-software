@@ -13,13 +13,31 @@ function populateSem(value, semester, resetCourses) {
         semOptions = semOptions + "<option>" + semBy[value][semId] + "</option>";
     }
     document.getElementById(semester).innerHTML = semOptions;
-        document.getElementById(resetCourses).innerHTML = select;
+    document.getElementById(resetCourses).innerHTML = select;
 
 }
 
 var ceUgCoreCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
+    '1st': ['PH101 - Physics',
+        'MA101 - Mathematics I',
+        'ME101 - Engineering Mechanics',
+        'EE101 - Basic Electrical Engineering',
+        'HS101 - Communicative English',
+        'CE101 - Engineering Graphics & Design',
+        'PH111 - Physics Laboratory',
+        'EE111 - Basic Electrical Engineering Laboratory',
+        'HS111 - Language Laboratory'],
+
+    '2nd': ['CH101 - Chemistry',
+        'MA102 - Mathematics II',
+        'CS101 - Introduction to Programming',
+        'EC101 - Basic Electronics',
+        'CE102 - Environmental Science & Engineering',
+        'CH111 - Chemistry Laboratory',
+        'CS111 - Programming Laboratory',
+        'EC111 - Basic Electronics Laboratory',
+        'ME111 - Workshop Practice'],
+
     '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
@@ -51,8 +69,26 @@ var cePgElectiveCourses = {
 }
 
 var cseUgCoreCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
+    '1st': ['CH101 - Chemistry',
+        'MA102 - Mathematics II',
+        'CS101 - Introduction to Programming',
+        'EC101 - Basic Electronics',
+        'CE102 - Environmental Science & Engineering',
+        'CH111 - Chemistry Laboratory',
+        'CS111 - Programming Laboratory',
+        'EC111 - Basic Electronics Laboratory',
+        'ME111 - Workshop Practice'],
+
+    '2nd': ['PH101 - Physics',
+        'MA101 - Mathematics I',
+        'ME101 - Engineering Mechanics',
+        'EE101 - Basic Electrical Engineering',
+        'HS101 - Communicative English',
+        'CE101 - Engineering Graphics & Design',
+        'PH111 - Physics Laboratory',
+        'EE111 - Basic Electrical Engineering Laboratory',
+        'HS111 - Language Laboratory'],
+
     '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
@@ -84,14 +120,68 @@ var csePgElectiveCourses = {
 }
 
 var eceUgCoreCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '1st': ['CH101 - Chemistry',
+        'MA102 - Mathematics II',
+        'CS101 - Introduction to Programming',
+        'EC101 - Basic Electronics',
+        'CE102 - Environmental Science & Engineering',
+        'CH111 - Chemistry Laboratory',
+        'CS111 - Programming Laboratory',
+        'EC111 - Basic Electronics Laboratory',
+        'ME111 - Workshop Practice'],
+
+    '2nd': ['PH101 - Physics',
+        'MA101 - Mathematics I',
+        'ME101 - Engineering Mechanics',
+        'EE101 - Basic Electrical Engineering',
+        'HS101 - Communicative English',
+        'CE101 - Engineering Graphics & Design',
+        'PH111 - Physics Laboratory',
+        'EE111 - Basic Electrical Engineering Laboratory',
+        'HS111 - Language Laboratory'],
+
+    '3rd': ['EC201 - Electronic Devices',
+        'EC202 - Network Analysis & Synthesis',
+        'EC203 - Analog Electronic Circuits',
+        'EC204 - Signals and Systems',
+        'EC221 - Circuit Theory Lab',
+        'EC222 - Analog Electronic Circuits Lab',
+        'MA201 - Mathematics III',
+        'CSxxx - Data Structures and Algorithms',
+        'CSxxy - Data Structure Lab'],
+
+    '4th': ['EC205 - Digital Electronic Circuits',
+        'EC206 - Analog Communication',
+        'EC207 - Control Systems',
+        'EC208 - Probability and Random Process',
+        'EC209 - Electrical & Electronic Materials',
+        'EC210 - Electromagnetic Fields & Wave Propagation',
+        'EC223 - Digital Electronics Lab',
+        'EC224 - Control Lab',
+        'EC225 - Analog Communication Lab'],
+
+    '5th': ['EC301 - Digital Communication',
+        'EC302 - Microprocessors & Microcontrollers',
+        'EC303 - Analog Integrated Circuits & Technology',
+        'EC304 - Digital Signal Processing',
+        'EC305 - Measurements and Instrumentation',
+        'EC306 - Principles of Optoelectronics and Optical Fibers',
+        'EC321 - Microprocessor Lab',
+        'EC322 - DSP Lab',
+        'EC323 - Digital Communication Lab'],
+
+    '6th': ['EI307 - RF and Microwave Engineering',
+        'EI308 - Data Communication and Network',
+        'EI309 - VLSI Design',
+        'EI310 - Power Electronics',
+        'EI324 - Design Lab',
+        'EI325 - Data & Optical Communication Lab',
+        'EI326 - VLSI Design Lab'],
+
+    '7th': ['EI401 - Wireless Communication',
+        'HSXXX - Engineering Economics / Management Studies'],
+
+    '8th': ['HSXXy - Engineering Economics / Management Studies'],
 }
 
 var eceUgElectiveCourses = {
@@ -120,8 +210,26 @@ var ecePgElectiveCourses = {
 }
 
 var eeUgCoreCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
+    '1st': ['CH101 - Chemistry',
+        'MA102 - Mathematics II',
+        'CS101 - Introduction to Programming',
+        'EC101 - Basic Electronics',
+        'CE102 - Environmental Science & Engineering',
+        'CH111 - Chemistry Laboratory',
+        'CS111 - Programming Laboratory',
+        'EC111 - Basic Electronics Laboratory',
+        'ME111 - Workshop Practice'],
+
+    '2nd': ['PH101 - Physics',
+        'MA101 - Mathematics I',
+        'ME101 - Engineering Mechanics',
+        'EE101 - Basic Electrical Engineering',
+        'HS101 - Communicative English',
+        'CE101 - Engineering Graphics & Design',
+        'PH111 - Physics Laboratory',
+        'EE111 - Basic Electrical Engineering Laboratory',
+        'HS111 - Language Laboratory'],
+        
     '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
@@ -156,8 +264,26 @@ var eePgElectiveCourses = {
 }
 
 var eieUgCoreCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
+    '1st': ['PH101 - Physics',
+        'MA101 - Mathematics I',
+        'ME101 - Engineering Mechanics',
+        'EE101 - Basic Electrical Engineering',
+        'HS101 - Communicative English',
+        'CE101 - Engineering Graphics & Design',
+        'PH111 - Physics Laboratory',
+        'EE111 - Basic Electrical Engineering Laboratory',
+        'HS111 - Language Laboratory'],
+
+    '2nd': ['CH101 - Chemistry',
+        'MA102 - Mathematics II',
+        'CS101 - Introduction to Programming',
+        'EC101 - Basic Electronics',
+        'CE102 - Environmental Science & Engineering',
+        'CH111 - Chemistry Laboratory',
+        'CS111 - Programming Laboratory',
+        'EC111 - Basic Electronics Laboratory',
+        'ME111 - Workshop Practice'],
+
     '3rd': ['EI201 - Electrical & Electronic Measurements',
         'EI202 - Analog Electronics',
         'EI203 - Circuits & Networks',
@@ -247,8 +373,26 @@ var eiePgElectiveCourses = {
 }
 
 var meUgCoreCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
+    '1st': ['PH101 - Physics',
+        'MA101 - Mathematics I',
+        'ME101 - Engineering Mechanics',
+        'EE101 - Basic Electrical Engineering',
+        'HS101 - Communicative English',
+        'CE101 - Engineering Graphics & Design',
+        'PH111 - Physics Laboratory',
+        'EE111 - Basic Electrical Engineering Laboratory',
+        'HS111 - Language Laboratory'],
+
+    '2nd': ['CH101 - Chemistry',
+        'MA102 - Mathematics II',
+        'CS101 - Introduction to Programming',
+        'EC101 - Basic Electronics',
+        'CE102 - Environmental Science & Engineering',
+        'CH111 - Chemistry Laboratory',
+        'CS111 - Programming Laboratory',
+        'EC111 - Basic Electronics Laboratory',
+        'ME111 - Workshop Practice'],
+
     '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
