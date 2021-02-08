@@ -1,0 +1,151 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: rgb(203, 216, 214);
+}
+
+.profile{
+    display: flex;
+    flex-wrap: nowrap;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile .header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 78%;
+    background-color: rgb(99, 185, 232);
+    padding: 20px;
+    box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2), 2px 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile .mid{
+    display: flex;
+    flex-direction: column; 
+    width: 50%;
+    height: 78%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(226, 28, 28, 0.2), 17px 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0px;
+}
+
+.profile .profilePic{
+    border-radius: 50%;
+    width: 184px;
+    height: 185px;
+    background-image: url("/index.jpg");
+    background-size: cover;
+}
+.profile  .username{
+    font-family: 'PT Sans', sans-serif;
+    margin: 6px;
+    color: white;
+    font-size: 23px;
+}
+.profile  .designation{
+    font-family: 'PT Sans', sans-serif;
+    color: rgb(214, 229, 232);
+}
+.profile  .button img {
+    margin: 26px;
+    width: 31px;
+    height: 31px;
+}
+.profile .head{
+    width: 100%;
+    height: 15%;
+    font-size: 35px;
+    text-align: center;
+    padding-top: 5px;
+    font-family: 'Oswald', sans-serif;
+    color: rgb(141, 139, 143);
+}
+
+.profile  hr{
+    border: -10px solid rgb(188, 209, 188);
+    border-radius: 5px;
+    width: 141.766px;
+    margin-top: 1px;
+}
+
+.profile  .firstrow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 44%;
+    font-family: 'Oswald', sans-serif;
+    color: rgb(109, 105, 100);
+    font-size: 32px;
+    padding-left: 10px;
+    padding-top: 16px;
+}
+
+.profile .department{
+    width: 50%;
+}
+.profile  .employid{
+    width: 50%;
+}
+.profile .secondrow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 30%;
+    font-family: 'Oswald', sans-serif;
+    color: rgb(109, 105, 100);
+    font-size: 32px;
+    padding-left: 10px;
+}
+.profile .phno{
+    width: 50%;
+}
+
+.profile .email{
+    width: 50%;
+}
+
+.profile .feed{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(176, 183, 184);
+    font-size: 19px;
+    word-wrap: break-word;
+    padding-right: 10px;
+}
+
+
+@media screen and (max-width: 814px) {
+    .profile {   
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+    }
+    .profile .header{
+        width: 100%;
+        height: 62vh;
+    }
+    .profile .mid{
+        width: 100%;
+    }
+    .profile hr{
+        width: 122.156px;
+    }
+    
+    .profile .head{
+        font-size: 24px;
+    }
+
+    .profile .firstrow{
+        font-size: 22px;
+    }
+    .profile .secondrow{
+        font-size: 22px;
+    }
+}

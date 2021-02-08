@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}NITS{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+    {% if profile.designation == 'HOD' %}
+    You are HOD. You have special privileges.
+    <br><br><br><br>
+    <center>
+        <table style="width:80%;text-align: center;">
+            <tr>
+                <th>Faculty Name </th>
+                <th> Preference number </th>
+                <th> Course type</th>
+                <th> UG/PG </th>
+                <th> Semester </th>
+                <th> Course Name</th>
+            </tr>
+            {% for pre in preferences %}
+            <tr>
+                <td> {{pre.user.first_name }} {{pre.user.last_name }}</td>
+                <td> {{ pre.preference_num }}</td>
+                <td> {{ pre.get_course_type_display }}</td>
+                <td> {{ pre.get_ug_pg_display }}</td>
+                <td> {{pre.semester }}</td>
+                <td> {{ pre.course_name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endif %}
+    {% else %}
+        You are logged out
+    {% endif %}<br>
+
+{% endblock %}

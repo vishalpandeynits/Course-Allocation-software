@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'allocator',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'course_allocator.urls'
+AUTHENTICATION_BACKENDS = ('course_allocator.emaillogin.EmailBackend',)
 
 TEMPLATES = [
     {
@@ -63,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'allocator.preprocessor.preload_infos'
             ],
         },
     },
@@ -119,3 +122,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+
+LOGIN_REDIRECT_URL = '/preference/'
+LOGOUT_REDIRECT_URL = "/"
+
+MEDIA_ROOT ='media' 
+MEDIA_URL = '/media/'

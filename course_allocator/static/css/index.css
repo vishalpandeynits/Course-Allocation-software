@@ -1,0 +1,50 @@
+*{
+    margin:0;
+    padding:0;
+}
+.navigation{
+    display: flex;
+    justify-content: flex-end;
+    padding:20px;
+    background:rgb(29, 226, 226)
+}
+.navigation>a{
+    margin:0px 15px;
+    text-decoration:none;
+    font-weight:1.3em;
+    text-transform: uppercase;
+}
+#branch{
+    display: none;
+}
+/* Multi step form */
+
+#select-preference {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+  }
+  
+#select-preference .tab {
+display: none;
+}
+
+#select-preference button {
+background-color: #4CAF50;
+color: #ffffff;
+border: none;
+padding: 10px 20px;
+font-size: 17px;
+font-family: Raleway;
+cursor: pointer;
+}
+
+#select-preference button:hover {
+opacity: 0.8;
+}
+
+#select-preference #prevBtn {
+background-color: #bbbbbb;
+}
