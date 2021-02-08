@@ -80,26 +80,26 @@
   font-size: 14px;
 }
 
-  .login-page .form button:hover,.form button:active,.form button:focus {
-    background: #43A047;
-  }
-  .login-page .form .message {
-    margin: 15px 0 0;
-    color: #b3b3b3;
-    font-size: 12px;
-  }
-  .login-page .form .message a {
-    color: #4CAF50;
-    text-decoration: none;
-  }
-  .login-page .form .register-form {
-    display: none;
-  }
+.login-page .form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.login-page .form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.login-page .form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.login-page .form .register-form {
+  display: none;
+}
 
-  @media only screen and (max-width: 600px) {
-    .login-page {
-        width: 100%;
-        padding: 0 0 0;
-        margin: auto;
-    }
+@media only screen and (max-width: 600px) {
+  .login-page {
+      width: 100%;
+      padding: 0 0 0;
+      margin: auto;
+  }
 }
