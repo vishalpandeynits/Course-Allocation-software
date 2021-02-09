@@ -26,8 +26,10 @@
             </form>
         </div>
         {% elif my_preferences|length == 6 %}
-            <h1 class="text-center"> You had already filled the preference page. Download PDF
-                <a class="btn btn primary" href="#"> Download Preview </a>
+            <h1 class="text-center"> You have submited your course preference. Download PDF
+                <form method="POST">{% csrf_token %}
+                    <input type="SUBMIT" value="SUBMIT" name="print" class="btn btn primary"> Download Preview </a>
+                </form>
             </h1>
         {% endif %}
     </div>
