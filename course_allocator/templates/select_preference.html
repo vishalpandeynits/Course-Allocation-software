@@ -26,11 +26,33 @@
             </form>
         </div>
         {% elif my_preferences|length == 6 %}
-            <h1 class="text-center"> You have submited your course preference. Download PDF
-                <form method="POST">{% csrf_token %}
-                    <input type="SUBMIT" value="SUBMIT" name="print" class="btn btn primary"> Download Preview </a>
+        <h1 class="text-center my-4"> YOUR PREFERENCES </h1>
+            <table class="table table-hover table-light">
+                <thead>
+                    <th colspan="4" class="text-center">{{ grouper }}</th>
+                    <tr>
+                        <th scope="col">Course Type</th>
+                        <th scope="col">UG/PG</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for prefer in my_preferences %}
+                    <tr>
+                        <th scope="row">{{prefer.course_type}}</th>
+                        <td>{{prefer.ug_pg}}</td>
+                        <td>{{prefer.semester}}</td>
+                        <td>{{prefer.course_name}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <center>
+                <form class="mx-auto" method="POST">{% csrf_token %}
+                    <input type="SUBMIT" value="Download in PDF " name="print" class="btn btn-primary">
                 </form>
-            </h1>
+            </center>
         {% endif %}
     </div>
 </div>

@@ -3,7 +3,8 @@
 <div class="login-page">
     <div class="form">
         <h3 class="text-center lead"> SIGN UP</h3>
-        <form class="login-form" method="post">{% csrf_token %}
+        <p id="errors" class="text-center lead"></p>
+        <form id="register" class="login-form" method="post">{% csrf_token %}
             {{ form.as_p }}
             <label for="id_department">Department:</label> 
             <select name="department" required id="id_department">
