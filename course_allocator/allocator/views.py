@@ -12,6 +12,7 @@ from datetime import datetime
 import io
 from django.http import FileResponse
 from django.contrib import messages
+from users.models import Profile
 
 def table_style():
 	return TableStyle([
@@ -122,32 +123,3 @@ def preference_page(request):
 	params={'my_preferences':my_preferences,}
 	return render(request,'select_preference.html',params)
 
-
-def signup(request):
-	if request.user.is_authenticated:
-		return redirect(reverse('home'))
-	if request.method=='POST':
-		basicform= RegisterForm(request.POST)
-		advanceform = ProfileRegisterForm(request.POST)
-		if basicform.is_valid() and advanceform.is_valid():
-			user = basicform.save(commit=False)
-			advance_data = advanceform.save(commit=False)
-			user.username = user.email.split('@')[0] +'-' + user.email.split('@')[1].split('.')[0]
-			user.save()
-			advance_data.user = user
-			advance_data.save()
-			return redirect(reverse('login'))
-	else:
-		basicform= RegisterForm()
-		advanceform = ProfileRegisterForm()
-	params = {'form':basicform,'advance_form':advanceform}
-	return render(request,'registration/signup.html',params)
-
-def profile_page(request,username):
-	user = User.objects.get(username=username)
-	profile = Profile.objects.get(user=user)
-	params = {
-		'profile':profile,
-		'requested_user':user,
-	}
-	return render(request,'profile.html',params)

@@ -1,3 +1,4 @@
 .vscode/
 course_allocator/course_allocator/__pycache__/
 course_allocator/allocator/__pycache__/
+*.sqlite3
