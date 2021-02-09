@@ -5,15 +5,24 @@ var semBy = {
     PG: ['1st', '2nd', '3rd', '4th'],
 }
 
-function populateSem(value, semester, resetCourses) {
+function re_set(electiveType, semester, courses){
+    var reset = "<option disabled selected>Select</option>";
+    var resetElectiveType = reset + '<option value="coreElective">Core Elective</option><option value="openElective">Open Elective</option>';
+    document.getElementById(electiveType).innerHTML = resetElectiveType;
+    document.getElementById(semester).innerHTML = reset;
+    document.getElementById(courses).innerHTML = reset;
+}
 
+function populateSem(ug_pg, sem, course) {
+
+    ug_pg = document.getElementById(ug_pg).value;
     var semOptions = "<option disabled selected>Select</option>";
     var select = "<option disabled selected>Select</option>"
-    for (semId in semBy[value]) {
-        semOptions = semOptions + "<option>" + semBy[value][semId] + "</option>";
+    for (eachSem in semBy[ug_pg]) {
+        semOptions = semOptions + "<option>" + semBy[ug_pg][eachSem] + "</option>";
     }
-    document.getElementById(semester).innerHTML = semOptions;
-    document.getElementById(resetCourses).innerHTML = select;
+    document.getElementById(sem).innerHTML = semOptions;
+    document.getElementById(course).innerHTML = select;
 
 }
 
@@ -327,8 +336,39 @@ var eieUgCoreCourses = {
     '8th': ['HSxxx - Business Management'],
 }
 
-var eieUgElectiveCourses = {
+var eieUgCoreElectiveCourses = {
     '1st': ['NA'],
+    '2nd': ['NA'],
+    '3rd': ['NA'],
+    '4th': ['NA'],
+    '5th': ['NA'],
+    '6th': ['EI321 - IC and VLSI Design',
+        'EI322 - Power Plant Instrumentation',
+        'EI323 - Computer networks',
+        'EI324 - PC Based Instrumentation',
+        'EI325 - Electro-Magnetic Field Theory',
+        'EI326 - Smart Sensors',
+        'EI327 - Optimization techniques'],
+
+    '7th': ['EI421 - Advanced Instrumentation',
+        'EI422 - Biomedical signal processing',
+        'EI423 - Real Time Embedded Systems',
+        'EI424 - IoT based Instrumentation',
+        'EI425 - MEMS & Nanotechnology',
+        'EI426 - Non Linear control systems',
+        'EI427 - Linear Integrated Circuits'],
+
+    '8th': ['EI441 - Advanced Sensors and Signal Processing',
+        'EI442 - Piping and Instrumentation',
+        'EI443 - Industrial Automation',
+        'EI444 - Wireless Communication',
+        'EI445 - Adaptive Control',
+        'EI446 - Analog Integrated Circuit Design',
+        'EI447 - Mechatronics'],
+}
+
+var eieUgOpenElectiveCourses = {
+    '1st': ['jk'],
     '2nd': ['NA'],
     '3rd': ['NA'],
     '4th': ['NA'],
@@ -520,9 +560,10 @@ function populateCoreCourses(selectedBranch, selectedUg_pg, selectedSemester, se
     document.getElementById(selectedCourse).innerHTML = courseOptions;
 }
 
-function populateElectiveCourses(selectedBranch, selectedUg_pg, selectedSemester, selectedCourse) {
+function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, selectedSemester, selectedCourse) {
     selectedBranch = document.getElementById('branch').value;
     selectedUg_pg = document.getElementById(selectedUg_pg).value;
+    electiveType = document.getElementById(electiveType).value;
     selectedSemester = document.getElementById(selectedSemester).value;
 
     var courseOptions = "<option value='' disabled selected>Select</option>";
@@ -556,9 +597,15 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, selectedSemester
     }
 
     else if (selectedBranch == 'EIE' && selectedUg_pg == 'UG') {
-
-        for (var eachCourses in eieUgElectiveCourses[selectedSemester]) {
-            courseOptions = courseOptions + "<option>" + eieUgElectiveCourses[selectedSemester][eachCourses] + "</option>"
+        if(electiveType == 'coreElective'){
+            for (var eachCourses in eieUgCoreElectiveCourses[selectedSemester]) {
+                courseOptions = courseOptions + "<option>" + eieUgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
+            }
+        }
+        if(electiveType == 'openElective'){
+            for (var eachCourses in eieUgOpenElectiveCourses[selectedSemester]) {
+                courseOptions = courseOptions + "<option>" + eieUgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
+            }
         }
     }
 
