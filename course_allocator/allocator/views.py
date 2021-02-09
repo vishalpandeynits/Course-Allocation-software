@@ -8,7 +8,7 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import Table, TableStyle
 from reportlab.lib.units import inch
 from reportlab.lib import colors
-from django.utils.timezone import now
+from datetime import datetime
 import io
 from django.http import FileResponse
 from django.contrib import messages
@@ -62,7 +62,7 @@ def preference_page(request):
 		page.drawString(0.6*inch,10.8*inch,f'Name: {user.first_name} {user.last_name} ')
 		page.drawString(0.6*inch,10.6*inch,f'Email: {user.email}')
 		page.drawString(0.6*inch,10.4*inch,f'Department: {profile.department}')
-		page.drawString(0.6*inch,10.2*inch,'Datetime: '+now().strftime('%d %b %Y %H:%M %p'))
+		page.drawString(0.6*inch,10.2*inch,'Datetime: '+datetime.now().strftime('%d %b %Y %H:%M %p'))
 		page.drawInlineImage('https://upload.wikimedia.org/wikipedia/en/c/c6/NIT_Silchar_logo.png',6.4*inch,10*inch, width=100,height=100)
 		page.setFont('Helvetica', 22)
 		page.line(0.5*inch,10*inch,8*inch,10*inch)

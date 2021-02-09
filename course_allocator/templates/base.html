@@ -29,6 +29,7 @@
 {% include 'navigation.html' %}
 {% block content %}
 {% endblock %}
+    <script src="{% static 'js/index.js' %}"></script>
 {% if user.is_authenticated %}
     <script src="{% static 'js/select_preference.js' %}"></script>
     <script src="{% static 'js/stepform.js' %}"></script>
