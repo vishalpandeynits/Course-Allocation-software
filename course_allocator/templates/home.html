@@ -11,7 +11,7 @@
                 <h4> Sessions </h4>
                 {% for session in sessions reversed %}
                     {% for i in session %}
-                        <a class="text-capitalize" href="{% url 'preference' i %}"> {{ i }} </a>
+                        <a class="text-capitalize" href="{% url 'home' i %}"> {{ i }} </a>
                     {% endfor %}
                 {% endfor %}
             </center>
@@ -21,11 +21,11 @@
         <div class="col-md-6 col-sm-12 mx-auto">
             {% if preferences %}
                 <h1 class="text-center"> PREFERENCES SUBMITTED -- {% widthratio preferences|length 6 1 %}</h1>
-                <h4 class="text-center"> Sorted agains faculties name </h4>
+                <h4 class="text-center"> Sorted against faculties name </h4>
             {% else %}
                 <h2 class="text-center"> No submission for this session. </h2>
             {% endif %}
-            {% regroup preferences|dictsort:"user.first_name" by user.first_name as faculties %}
+            {% regroup preferences|dictsort:"user.first_name" by display_name as faculties %}
             <div id="preference-container" id="according-to-faculty">
                     <div class="accordion" id="accordionExample">
 
