@@ -5,7 +5,7 @@ var semBy = {
     PG: ['1st', '2nd', '3rd', '4th'],
 }
 
-function re_set(electiveType, semester, courses){
+function re_set(electiveType, semester, courses) {
     var reset = "<option disabled selected>Select</option>";
     var resetElectiveType = reset + '<option value="coreElective">Core Elective</option><option value="openElective">Open Elective</option>';
     document.getElementById(electiveType).innerHTML = resetElectiveType;
@@ -47,32 +47,86 @@ var ceUgCoreCourses = {
         'EC111 - Basic Electronics Laboratory',
         'ME111 - Workshop Practice'],
 
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '3rd': ['Mechanics of Materials',
+        'Civil Engineering Material, Testing and Evaluation',
+        'Introduction to Geo Sciences',
+        'Surveying & Geomatics',
+        'Fluid Mechanics',
+        'Surveying & Geomatics Lab',
+        'Civil Engineering Materials, Testing and Evaluation Lab',
+        'Civil Engineering Drawing Lab'],
+
+    '4th': ['Structural Analysis I',
+        'Hydraulics',
+        'Design of Concrete Structures-I',
+        'Transportation Engineering',
+        'Geotechnical Engineering',
+        'Hydraulics Lab',
+        'Concrete Lab',
+        'Geotechnical Engineering Lab',
+        'Geo Science Lab'],
+
+    '5th': ['Water Supply Engineering',
+        'Structural Analysis- II',
+        'Foundation Engineering',
+        'Design of Concrete Structures-II',
+        'Surface and Ground water Hydrology',
+        'RC Design and Detailing',
+        'Transportation Engineering Lab',
+        'Foundation Engineering Lab',
+        'Water Resource Engineering Lab'],
+
+    '6th': ['Sewage Treatment and Disposal',
+        'Estimation and Valuation',
+        'Design of Steel Structures',
+        'Environment Engineering Lab',
+        'CAD Lab (MATLAB/ ANSYS/Fluent/ ABAQUS/ …)',
+        'Civil Engineering Instrumentation Lab'],
+
+    '7th': ['Concrete Technology',
+        'Engineering Economics / Management Studies'],
+
+    '8th': ['Engineering Economics / Management Studies'],
 }
 var ceUgCoreElectiveCourses = {
-    '1st': ['EEEEE', 'EEEEE', 'EEEEE'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '1st': ['NA'],
+    '2nd': ['NA'],
+    '3rd': ['NA'],
+    '4th': ['NA'],
+    '5th': ['NA'],
+
+    '6th': ['Soil Dynamics & Machine Foundation',
+        'Open Channel Flow'],
+
+    '7th': ['Coastal Engineering',
+        'Advanced Structural Analysis',
+        'Advanced Foundation Engineering',
+        'Numerical Methods in Engineering'],
+
+    '8th': ['Earthquake Resistant Design of Structures',
+        'Elementary Performance-Based Seismic Design',
+        'Application of Geosynthetics',
+        'Engineering Risk Analysis'],
 }
 var ceUgOpenElectiveCourses = {
-    '1st': ['EEEEE', 'EEEEE', 'EEEEE'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '1st': ['NA'],
+    '2nd': ['NA'],
+    '3rd': ['NA'],
+    '4th': ['NA'],
+    '5th': ['NA'],
+
+    '6th': ['Water Resource & Irrigation Engineering',
+        'Elements of Ocean Engineering',
+        'Railway and Bridge Engg.'],
+
+    '7th': ['Dynamics of Structures',
+        'Modeling, Simulation & Application',
+        'Data Analytics in Engineering'],
+
+    '8th': ['Construction Engg & Management',
+        'Remote Sensing and GIS',
+        'Finite Elements Methods in Engineering',
+        'Optimization Techniques',],
 }
 var cePgCoreCourses = {
     '1st': ['MA101', 'PH101', 'ME101'],
@@ -114,66 +168,97 @@ var cseUgCoreCourses = {
         'EE111 - Basic Electrical Engineering Laboratory',
         'HS111 - Language Laboratory'],
 
-    '3rd': ['Data Structure', 
-            'Discrete Structures', 
-            'Electrical Circuit and Switching', 
-            'Energy Science and Technology', 
-            'Data Structure Lab.', 
-            'Energy Science Lab', 
-            'OOP Lab', 
-            'Mathematics III'],
+    '3rd': ['Data Structure',
+        'Discrete Structures',
+        'Electrical Circuit and Switching',
+        'Energy Science and Technology',
+        'Data Structure Lab.',
+        'Energy Science Lab',
+        'OOP Lab',
+        'Mathematics III'],
 
-    '4th': ['Theory of Computation & Automata Theory', 
-            'Computer Architecture & Microprocessor', 
-            'DAA', 
-            'Mathematics-IV (Introduction to Stochastic Processes)', 
-            'Signals & Data Communication', 
-            'Computer Architecture & Microprocessor Lab', 
-            'DAA Lab', 
-            'Signals & Data Communication Lab', 
-            'Applied Probability Lab'],
+    '4th': ['Theory of Computation & Automata Theory',
+        'Computer Architecture & Microprocessor',
+        'DAA',
+        'Mathematics-IV (Introduction to Stochastic Processes)',
+        'Signals & Data Communication',
+        'Computer Architecture & Microprocessor Lab',
+        'DAA Lab',
+        'Signals & Data Communication Lab',
+        'Applied Probability Lab'],
 
-    '5th': ['Computer Network', 
-            'DBMS', 
-            'OS', 
-            'Software Engineering', 
-            'Graph Theory', 
-            'CN Lab', 
-            'DBMS Lab', 
-            'OS Lab', 
-            'SE Lab'],
+    '5th': ['Computer Network',
+        'DBMS',
+        'OS',
+        'Software Engineering',
+        'Graph Theory',
+        'CN Lab',
+        'DBMS Lab',
+        'OS Lab',
+        'SE Lab'],
 
-    '6th': ['Principles of Programming Language', 
-            'Compiler Design', 
-            'Graphics & Multimedia', 
-            'Object Oriented Design Lab/Applied Parallel Prog. Lab', 
-            'Compiler Lab', 
-            'Graphics & Multimedia Lab'],
+    '6th': ['Principles of Programming Language',
+        'Compiler Design',
+        'Graphics & Multimedia',
+        'Object Oriented Design Lab/Applied Parallel Prog. Lab',
+        'Compiler Lab',
+        'Graphics & Multimedia Lab'],
 
     '7th': ['Human Computer Interaction',
-            'Professional Ethics'],
+        'Professional Ethics'],
 
     '8th': ['Business Management'],
 }
 var cseUgCoreElectiveCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '1st': ['NA'],
+    '2nd': ['NA'],
+    '3rd': ['NA'],
+    '4th': ['NA'],
+    '5th': ['NA'],
+
+    '6th': ['Natural Language Processing', 
+        'Social Network Analysis', 
+        'Digital Image Processing', 
+        'Speech Processing', 
+        'Wireless Network'],
+
+    '7th': ['Machine Learning', 
+        'Pattern Recognition', 
+        'Computational Geometry', 
+        'Cryptography and Security', 
+        'Mobile AdHoc Network', 
+        'VLSI Physical Design', 
+        'Distributed System', 
+        'Internet of Things'],
+
+    '8th': ['Quantum Computing', 
+        'Text Mining and Analytics', 
+        'Wireless Sensor Network', 
+        'Applied Parallel Programming', 
+        'Information Theory and Coding', 
+        'Linux Operating System', 
+        'Information Theory and Coding', 
+        'Applied Graph Theory'],
 }
 var cseUgOpenElectiveCourses = {
-    '1st': ['MA101', 'PH101', 'ME101'],
-    '2nd': ['CH101', 'MA102', 'CS101', 'EC101'],
-    '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '6th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '7th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
-    '8th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
+    '1st': ['NA'],
+    '2nd': ['NA'],
+    '3rd': ['NA'],
+    '4th': ['NA'],
+    '5th': ['NA'],
+    
+    '6th': ['Data Mining', 
+        'Neural Network', 
+        'Simulation and Modeling'],
+
+    '7th': ['Artificial Intelligence', 
+        'Soft Computing Techniques', 
+        'Big Data Analysis', 
+        'Web Technology'],
+
+    '8th': ['Time Series Analysis', 
+        'Formal Methods of System Verification', 
+        'Cloud Computing'],
 }
 var csePgCoreCourses = {
     '1st': ['MA101', 'PH101', 'ME101'],
@@ -317,7 +402,7 @@ var eeUgCoreCourses = {
         'PH111 - Physics Laboratory',
         'EE111 - Basic Electrical Engineering Laboratory',
         'HS111 - Language Laboratory'],
-        
+
     '3rd': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '4th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
     '5th': ['EI201', 'EI202', 'EI203', 'EI211', 'EI212', 'EI213'],
@@ -677,12 +762,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     if (selectedBranch == 'CE' && selectedUg_pg == 'UG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in ceUgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + ceUgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in ceUgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + ceUgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -691,12 +776,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'CSE' && selectedUg_pg == 'UG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in cseUgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + cseUgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in cseUgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + cseUgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -705,12 +790,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'ECE' && selectedUg_pg == 'UG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in eceUgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eceUgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in eceUgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eceUgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -719,12 +804,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'EE' && selectedUg_pg == 'UG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in eeUgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eeUgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in eeUgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eeUgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -733,12 +818,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'EIE' && selectedUg_pg == 'UG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in eieUgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eieUgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in eieUgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eieUgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -747,12 +832,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'ME' && selectedUg_pg == 'UG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in meUgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + meUgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in meUgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + meUgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -761,12 +846,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'CE' && selectedUg_pg == 'PG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in cePgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + cePgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in cePgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + cePgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -775,12 +860,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'CSE' && selectedUg_pg == 'PG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in csePgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + csePgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in csePgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + csePgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -789,12 +874,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'ECE' && selectedUg_pg == 'PG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in ecePgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + ecePgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in ecePgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + ecePgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -803,12 +888,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'EE' && selectedUg_pg == 'PG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in eePgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eePgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in eePgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eePgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -817,12 +902,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'EIE' && selectedUg_pg == 'PG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in eiePgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eiePgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in eiePgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + eiePgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
@@ -831,12 +916,12 @@ function populateElectiveCourses(selectedBranch, selectedUg_pg, electiveType, se
 
     else if (selectedBranch == 'ME' && selectedUg_pg == 'PG') {
 
-        if(electiveType == 'coreElective'){
+        if (electiveType == 'coreElective') {
             for (var eachCourses in mePgCoreElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + mePgCoreElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
         }
-        if(electiveType == 'openElective'){
+        if (electiveType == 'openElective') {
             for (var eachCourses in mePgOpenElectiveCourses[selectedSemester]) {
                 courseOptions = courseOptions + "<option>" + mePgOpenElectiveCourses[selectedSemester][eachCourses] + "</option>"
             }
