@@ -13,6 +13,7 @@ from .forms import *
 from users.models import Profile
 import io
 from course_allocator.session_detector import session
+from django.db.models import Q
 
 def homepage(request):
 	if request.user.is_authenticated:
@@ -30,9 +31,9 @@ def home(request,session_input):
 	if profile.designation=='HOD':
 		sessions = Preference.objects.all().values_list('session')
 		teachers = Profile.objects.filter(department = profile.department)
-		preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num').filter(session__icontains=session_input)
-		if session_input:
-			preferences = preferences.filter(session=session_input)
+		preferences = Preference.objects.filter(Q(user__profile__in = teachers)).order_by('user','course_type','preference_num')
+		# if session_input:
+		# 	preferences = preferences.filter(session__icontains=session_input)
 		print(preferences)
 		params = {
 			'preferences':preferences,
