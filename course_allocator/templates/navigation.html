@@ -1,6 +1,6 @@
 <div class="navigation">
     {% if profile.designation == 'HOD' %}
-    <a href="{% url 'home' session %}">Home </a>
+    <a href="{% url 'home' session %}"> All submissions </a>
     {% endif %}
     {% if user.is_authenticated %}
         <a href="{% url 'preference' session %}"> Preference Page</a>

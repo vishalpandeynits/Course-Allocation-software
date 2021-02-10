@@ -24,7 +24,7 @@ def homepage(request):
 		if profile.designation=="HOD":
 			return redirect(reverse('home',kwargs={'session_input':session()}))
 		else:
-			return redirect(reverse('preference'))
+			return redirect(reverse('preference',kwargs={'session_input':session()}))
 	else:
 		return redirect('login')
 
@@ -42,7 +42,7 @@ def home(request,session_input):
 			}
 		return render(request,'home.html',params)
 	else:
-		return redirect(reverse('preference'))
+		return redirect(reverse('preference',kwargs={'session_input':session()}))
 
 @login_required
 def preference_page(request,session_input):

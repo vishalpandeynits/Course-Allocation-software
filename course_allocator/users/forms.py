@@ -38,6 +38,7 @@ class ProfileRegisterForm(forms.ModelForm):
 		cleaned_data = self.cleaned_data
 		k=Profile.objects.filter(Q(designation=cleaned_data['designation']) & Q(department=cleaned_data['department']))
 		if k.exists():
+			k = k.first()
 			raise ValidationError(f'{k.user.first_name} {k.user.last_name} is registered as the HOD of your department.')
 
 class UserLoginForm(AuthenticationForm):

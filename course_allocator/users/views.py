@@ -46,7 +46,7 @@ def signup(request):
             send_mail(mail_subject, message,'guru.online.classroom.portal@gmail.com' ,[to_email],html_message=message)
             messages.add_message(request,messages.SUCCESS,'An Activation link is sent to your \
                     registrated email id.Please visit your email and activate your account.')
-            return redirect(reverse('preference'))
+            return redirect(reverse('preference',kwargs={'session_input':session()}))
     else:
         basicform= RegisterForm()
         advanceform = ProfileRegisterForm()
@@ -67,11 +67,11 @@ def activate(request, uidb64, token,backend='django.contrib.auth.backends.ModelB
         if user is not None:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             print('done')
-            return redirect(reverse('preference'))
+            return redirect(reverse('preference',kwargs={'session_input':session()}))
         return redirect(reverse('profile',kwargs={'username':user.username}))
     else:
         messages.add_message(request,messages.WARNING,'Activation link is invalid.')
-        return redirect(reverse('home',kwargs={'session':session()}))
+        return redirect(reverse('home',kwargs={'session_input':session()}))
 
 def profile_page(request,username):
 	user = get_object_or_404(User,username=username)
