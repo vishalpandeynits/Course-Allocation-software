@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.urls import reverse
 from .forms import *
+from course_allocator.session_detector import session
 
 class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
@@ -24,6 +25,7 @@ def signup(request):
     if request.method=='POST':
         basicform= RegisterForm(request.POST)
         advanceform = ProfileRegisterForm(request.POST)
+        print(basicform.errors,advanceform.errors)
         if basicform.is_valid() and advanceform.is_valid():
             user = basicform.save(commit=False)
             advance_data = advanceform.save(commit=False)
@@ -44,11 +46,11 @@ def signup(request):
             send_mail(mail_subject, message,'guru.online.classroom.portal@gmail.com' ,[to_email],html_message=message)
             messages.add_message(request,messages.SUCCESS,'An Activation link is sent to your \
                     registrated email id.Please visit your email and activate your account.')
-            return redirect('home')
+            return redirect(reverse('preference'))
     else:
         basicform= RegisterForm()
         advanceform = ProfileRegisterForm()
-    params = {'form':basicform,'advance_form':advanceform}
+    params = {'form':basicform,'advanceform':advanceform}
     return render(request,'registration/signup.html',params)
 
 def activate(request, uidb64, token,backend='django.contrib.auth.backends.ModelBackend'):
@@ -60,14 +62,16 @@ def activate(request, uidb64, token,backend='django.contrib.auth.backends.ModelB
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        messages.add_message(request,messages.SUCCESS,'Thank you for your email confirmation. We request you to kindly update your \
-            contact details so other users can contact you in case of any need.')
+        messages.add_message(request,messages.SUCCESS,'Thank you for your email confirmation. Now you can log in.')
+        print(user)
         if user is not None:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            print('done')
+            return redirect(reverse('preference'))
         return redirect(reverse('profile',kwargs={'username':user.username}))
     else:
         messages.add_message(request,messages.WARNING,'Activation link is invalid.')
-        return redirect('home')
+        return redirect(reverse('home',kwargs={'session':session()}))
 
 def profile_page(request,username):
 	user = get_object_or_404(User,username=username)

@@ -4,29 +4,16 @@
     <div class="form">
         <h3 class="text-center lead"> SIGN UP</h3>
         <p id="errors" class="text-center lead"></p>
+        {% if ProfileRegisterForm.errors %}
+            {% for error in ProfileRegisterForm.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
         <form id="register" class="login-form" method="post">{% csrf_token %}
             {{ form.as_p }}
-            <label for="id_department">Department:</label> 
-            <select name="department" required id="id_department">
-                <option value="" selected>--Select--</option>
-                <option value="CSE">Computer Science and Engineering</option>
-                <option value="ECE">Electronics communication and Engineering</option>
-                <option value="CE">Civil Engineering</option>
-                <option value="EEE">Electrical Engineering</option>
-                <option value="EIE">Electronics &amp; Instrumentation Engineering</option>
-                <option value="ME">Mechanical Engineering</option>
-            </select><br>
-            
-            <label for="id_phone_number">Phone number:</label> 
-            <input type="number" name="phone_number" min="0" required id="id_phone_number"><br>
- 
-            <label for="id_designation">Designation:</label> 
-            <select name="designation" required id="id_designation">
-                <option value="" selected>--Select--</option>
-                <option value="HOD">Head of Department</option>
-                <option value="AP">Associate Professor</option>
-                <option value="P">Professor</option>
-            </select><br>
+            {{ advanceform.as_p }}
             <input id="submit" type="submit" value="SAVE USER">
          </form>
   </div>
