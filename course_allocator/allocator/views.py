@@ -1,61 +1,97 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth.models import User
-from .forms import *
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from reportlab.pdfgen import canvas
+from reportlab.platypus import Table
+from reportlab.lib.units import inch
+from django.http import FileResponse
+from django.contrib import messages
+from datetime import datetime
+from .utils import *
 from .models import *
+from .forms import *
+from users.models import Profile
+import io
+from course_allocator.session_detector import session
 
-def home(request):
-	params ={
-		'hi':'hello'
-	}
+def homepage(request):
 	if request.user.is_authenticated:
-		profile = Profile.objects.get(user=request.user)
-		if profile.designation=='HOD':
-			teachers = Profile.objects.filter(department = profile.department)
-			preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num')
-			params = {
-				'preferences':preferences,
-				'teachers':teachers
-				}
-		return render(request,'home.html',params)
-	return render(request,'home.html',params)
-
-def signup(request):
-	if request.user.is_authenticated:
-		return redirect(reverse('home'))
-
-	if request.method=='POST':
-		basicform= RegisterForm(request.POST, request.FILES)
-		advanceform = ProfileRegisterForm(request.POST , request.FILES)
-		if basicform.is_valid() and advanceform.is_valid():
-			user = basicform.save(commit=False)
-			user.username = user.email.split('@')[0] +'-' + user.email.split('@')[1].split('.')[0]
-			user.save()
-			advance_data = advanceform.save(commit=False)
-			advance_data.user = user
-			advance_data.save()
-			return redirect('/')
+		profile=get_object_or_404(Profile,user=request.user)
+		if profile.designation=="HOD":
+			return render(request,'home.html')
+		else:
+			return redirect(reverse('preference'))
 	else:
-		basicform= RegisterForm()
-		advanceform = ProfileRegisterForm()
-	params = {'form':basicform,'advance_form':advanceform}
-	return render(request,'registration/signup.html',params)
+		return redirect('login')
 
-def profile_page(request,username):
-	user = User.objects.get(username=username)
-	profile = Profile.objects.get(user=user)
-	params = {
-		'profile':profile,
-		'requested_user':user,
-	}
-	
-	return render(request,'profile.html',params)
+@login_required
+def home(request,session_input):
+	profile = Profile.objects.get(user=request.user)
+	if profile.designation=='HOD':
+		sessions = Preference.objects.all().values_list('session')
+		teachers = Profile.objects.filter(department = profile.department)
+		preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num').filter(session__icontains=session_input)
+		if session_input:
+			preferences = preferences.filter(session=session_input)
+		print(preferences)
+		params = {
+			'preferences':preferences,
+			'teachers':teachers,
+			'sessions':sessions,
+			'session':session()
+			}
+		return render(request,'home.html',params)
+	else:
+		return redirect(reverse('preference'))
+
 @login_required
 def preference_page(request):
-	profile = Profile.objects.get(user = request.user)
-	branch = profile.department
-	if request.method=="POST":
+	user = request.user
+	profile = Profile.objects.get(user=user)
+	my_preferences=Preference.objects.filter(user=request.user).order_by('ug_pg')
+	if my_preferences.count()==6 and 'print' in request.POST:
+		core_courses = [list(i.values())[2:] for i in list(my_preferences.filter(course_type='core').values())]
+		elective_courses = [list(i.values())[2:] for i in list(my_preferences.filter(course_type='elective').values())]
+		for i in core_courses:
+			i.remove('core') # remove'core' tag from core course
+			i.pop() # remove 'session' from queryset
+		for i in elective_courses:
+			i.remove('elective')# remove'elective' tag from elective course
+			i.pop()  # remove 'session' from queryset
+		core_courses.insert(0,table_row())
+		elective_courses.insert(0,table_row())
+		buffer = io.BytesIO()
+		page = canvas.Canvas(buffer)
+		page.setFont('Helvetica', 11)
+		page.drawString(0.6*inch,11*inch,f'Name: {user.first_name} {user.last_name} ')
+		page.drawString(0.6*inch,10.8*inch,f'Email: {user.email}')
+		page.drawString(0.6*inch,10.6*inch,f'Department: {profile.department}')
+		page.drawString(0.6*inch,10.6*inch,f'Session: {session()}')
+		page.drawString(0.6*inch,10.2*inch,'Datetime: '+datetime.now().strftime('%d %b %Y %H:%M %p'))
+		page.drawInlineImage('https://upload.wikimedia.org/wikipedia/en/c/c6/NIT_Silchar_logo.png',6.4*inch,10*inch, width=100,height=100)
+		page.setFont('Helvetica', 22)
+		page.line(0.5*inch,10*inch,8*inch,10*inch)
+
+		page.drawString(3*inch,9.5*inch,"PREFERENCES")
+		page.drawCentredString(4*inch,9*inch,"Core Courses")
+		t=Table(core_courses,hAlign='CENTER')
+		t.setStyle(table_style())
+		page.setFont('Helvetica', 18)
+		t.wrapOn(page, 1.4*inch, 7.4*inch)
+		t.drawOn(page, 1.4*inch, 7.4*inch)
+
+		page.drawCentredString(4*inch,7*inch,"Elective Courses")
+		x = Table(elective_courses,hAlign='CENTER')
+		x.setStyle(table_style())
+		x.wrapOn(page,1.4*inch, 5.4*inch)
+		x.drawOn(page,1.4*inch, 5.4*inch)
+
+		page.showPage()
+		page.save()
+		buffer.seek(0)
+		return FileResponse(buffer, as_attachment=True, filename=f'{user.username}-preference.pdf')
+
+	elif request.method=="POST":
 		#core courses 
 		ug_pg1 = request.POST.get('ug_pg_cc_pre1')
 		semester1 = request.POST.get('semester_cc_pre1')
@@ -87,4 +123,7 @@ def preference_page(request):
 		Preference.objects.create(user=request.user,preference_num = '1',course_type='elective', semester = semester4, course_name = course4, ug_pg = ug_pg4)
 		Preference.objects.create(user=request.user,preference_num = '2',course_type='elective', semester = semester5, course_name = course5, ug_pg = ug_pg5)
 		Preference.objects.create(user=request.user,preference_num = '3',course_type='elective', semester = semester6, course_name = course6, ug_pg = ug_pg6)
-	return render(request,'select_preference.html')
+		messages.add_message(request,messages.SUCCESS, f'Your Preference submitted')
+	params={'my_preferences':my_preferences,'session':session()}
+	return render(request,'select_preference.html',params)
+

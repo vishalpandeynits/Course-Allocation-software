@@ -1,40 +1,59 @@
 {% extends 'base.html' %}
 {% block title %}NITS{% endblock %}
-
 {% block css %}
 {% endblock %}
-
 {% block content %}
 
     {% if user.is_authenticated %}
-    {% if profile.designation == 'HOD' %}
-    You are HOD. You have special privileges.
-    <br><br><br><br>
-    <center>
-        <table style="width:80%;text-align: center;">
-            <tr>
-                <th>Faculty Name </th>
-                <th> Preference number </th>
-                <th> Course type</th>
-                <th> UG/PG </th>
-                <th> Semester </th>
-                <th> Course Name</th>
-            </tr>
-            {% for pre in preferences %}
-            <tr>
-                <td> {{pre.user.first_name }} {{pre.user.last_name }}</td>
-                <td> {{ pre.preference_num }}</td>
-                <td> {{ pre.get_course_type_display }}</td>
-                <td> {{ pre.get_ug_pg_display }}</td>
-                <td> {{pre.semester }}</td>
-                <td> {{ pre.course_name }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </center>
-{% endif %}
-    {% else %}
-        You are logged out
-    {% endif %}<br>
 
+        {% if profile.designation == 'HOD' %}
+            {% if preferences %}
+                <h1 class="text-center"> PREFERENCES SUBMITTED -- {% widthratio preferences|length 6 1 %}</h1>
+            {% else %}
+                 <h1> No submission yet </h1>
+            {% endif %}
+            
+            <h1 class="text-center"> According to faculty </h1>
+            {% regroup preferences|dictsort:"user.first_name" by user.first_name as faculties %}
+            <div id="preference-container" id="according-to-faculty"class="row">
+                <div class="col-md-8 col-lg-6 col-sm-12 mx-auto">
+                    <div class="accordion" id="accordionExample">
+                        {% for grouper, prefer in faculties %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+                                {{ grouper }}
+                                </button>
+                            </h2>
+                            <div id="collapse{{forloop.counter}}" class="accordion-collapse collapse {% if forloop.counter == 1 %}show {% endif %}" aria-labelledby="heading{{forloop.counter}}" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Course Type</th>
+                                                <th scope="col">UG/PG</th>
+                                                <th scope="col">Semester</th>
+                                                <th scope="col">Course Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for fac in prefer %}
+                                            <tr>
+                                                <th scope="row">{{fac.course_type}}</th>
+                                                <td>{{fac.ug_pg}}</td>
+                                                <td>{{fac.semester}}</td>
+                                                <td>{{fac.course_name}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
 {% endblock %}
