@@ -25,9 +25,6 @@
         <div class="designation">
             {{ profile.get_designation_display }}
         </div>
-        <div class="button">
-            <a href="#" class="edit"><img src="/84380.svg" alt=""></a>
-        </div>
     </div>
     
     <div class="mid">
@@ -54,9 +51,11 @@
             </div>
  
         </div>
+        {% if requested_user == user %}
         <div id="button-container">
             <a href="{% url 'password_change' %}"> Change Password </a>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

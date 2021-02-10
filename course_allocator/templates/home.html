@@ -3,21 +3,32 @@
 {% block css %}
 {% endblock %}
 {% block content %}
+{% if profile.designation == 'HOD' %}
+    <div class="row">
+        <div class="col-md-2 col-sm-12">
+            {% if sessions %}
+            <center>
+                <h4> Sessions </h4>
+                {% for session in sessions reversed %}
+                    {% for i in session %}
+                        <a class="text-capitalize" href="{% url 'preference' i %}"> {{ i }} </a>
+                    {% endfor %}
+                {% endfor %}
+            </center>
+            {% endif %}
+        </div>
 
-    {% if user.is_authenticated %}
-
-        {% if profile.designation == 'HOD' %}
+        <div class="col-md-6 col-sm-12 mx-auto">
             {% if preferences %}
                 <h1 class="text-center"> PREFERENCES SUBMITTED -- {% widthratio preferences|length 6 1 %}</h1>
+                <h4 class="text-center"> Sorted agains faculties name </h4>
             {% else %}
-                 <h1> No submission yet </h1>
+                <h2 class="text-center"> No submission for this session. </h2>
             {% endif %}
-            
-            <h1 class="text-center"> According to faculty </h1>
             {% regroup preferences|dictsort:"user.first_name" by user.first_name as faculties %}
-            <div id="preference-container" id="according-to-faculty"class="row">
-                <div class="col-md-8 col-lg-6 col-sm-12 mx-auto">
+            <div id="preference-container" id="according-to-faculty">
                     <div class="accordion" id="accordionExample">
+
                         {% for grouper, prefer in faculties %}
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -25,7 +36,7 @@
                                 {{ grouper }}
                                 </button>
                             </h2>
-                            <div id="collapse{{forloop.counter}}" class="accordion-collapse collapse {% if forloop.counter == 1 %}show {% endif %}" aria-labelledby="heading{{forloop.counter}}" data-bs-parent="#accordionExample">
+                            <div id="collapse{{forloop.counter}}" class="accordion-collapse collapse {% if forloop.counter == 1 %} show {% endif %}" aria-labelledby="heading{{forloop.counter}}" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <table class="table table-hover table-light">
                                         <thead>
@@ -51,9 +62,11 @@
                             </div>
                             </div>
                         {% endfor %}
+
                     </div>
-                </div>
             </div>
-        {% endif %}
-    {% endif %}
+
+        </div>
+    </div>
+{% endif %}
 {% endblock %}

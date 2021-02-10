@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -7,6 +8,7 @@ from reportlab.lib.units import inch
 from django.http import FileResponse
 from django.contrib import messages
 from datetime import datetime
+from django.http import Http404
 from .utils import *
 from .models import *
 from .forms import *
@@ -16,10 +18,11 @@ from course_allocator.session_detector import session
 from django.db.models import Q
 
 def homepage(request):
+	print("His")
 	if request.user.is_authenticated:
 		profile=get_object_or_404(Profile,user=request.user)
 		if profile.designation=="HOD":
-			return render(request,'home.html')
+			return redirect(reverse('home',kwargs={'session_input':session()}))
 		else:
 			return redirect(reverse('preference'))
 	else:
@@ -29,28 +32,25 @@ def homepage(request):
 def home(request,session_input):
 	profile = Profile.objects.get(user=request.user)
 	if profile.designation=='HOD':
-		sessions = Preference.objects.all().values_list('session')
 		teachers = Profile.objects.filter(department = profile.department)
 		preferences = Preference.objects.filter(Q(user__profile__in = teachers)).order_by('user','course_type','preference_num')
-		# if session_input:
-		# 	preferences = preferences.filter(session__icontains=session_input)
-		print(preferences)
+		if session_input:
+			preferences = preferences.filter(session__icontains=session_input)
 		params = {
 			'preferences':preferences,
 			'teachers':teachers,
-			'sessions':sessions,
-			'session':session()
 			}
 		return render(request,'home.html',params)
 	else:
 		return redirect(reverse('preference'))
 
 @login_required
-def preference_page(request):
+def preference_page(request,session_input):
 	user = request.user
 	profile = Profile.objects.get(user=user)
-	my_preferences=Preference.objects.filter(user=request.user).order_by('ug_pg')
-	if my_preferences.count()==6 and 'print' in request.POST:
+	my_preferences=Preference.objects.filter(Q(user=request.user) & Q(session=session_input)).order_by('course_type','-ug_pg','preference_num')
+	if 'print' in request.POST and my_preferences.exists():
+		which_session = my_preferences.first().session
 		core_courses = [list(i.values())[2:] for i in list(my_preferences.filter(course_type='core').values())]
 		elective_courses = [list(i.values())[2:] for i in list(my_preferences.filter(course_type='elective').values())]
 		for i in core_courses:
@@ -67,7 +67,7 @@ def preference_page(request):
 		page.drawString(0.6*inch,11*inch,f'Name: {user.first_name} {user.last_name} ')
 		page.drawString(0.6*inch,10.8*inch,f'Email: {user.email}')
 		page.drawString(0.6*inch,10.6*inch,f'Department: {profile.department}')
-		page.drawString(0.6*inch,10.6*inch,f'Session: {session()}')
+		page.drawString(0.6*inch,10.4*inch,f'Session: {which_session}')
 		page.drawString(0.6*inch,10.2*inch,'Datetime: '+datetime.now().strftime('%d %b %Y %H:%M %p'))
 		page.drawInlineImage('https://upload.wikimedia.org/wikipedia/en/c/c6/NIT_Silchar_logo.png',6.4*inch,10*inch, width=100,height=100)
 		page.setFont('Helvetica', 22)
@@ -92,7 +92,7 @@ def preference_page(request):
 		buffer.seek(0)
 		return FileResponse(buffer, as_attachment=True, filename=f'{user.username}-preference.pdf')
 
-	elif request.method=="POST":
+	elif request.method=="POST" and not my_preferences.exists():
 		#core courses 
 		ug_pg1 = request.POST.get('ug_pg_cc_pre1')
 		semester1 = request.POST.get('semester_cc_pre1')
@@ -125,6 +125,11 @@ def preference_page(request):
 		Preference.objects.create(user=request.user,preference_num = '2',course_type='elective', semester = semester5, course_name = course5, ug_pg = ug_pg5)
 		Preference.objects.create(user=request.user,preference_num = '3',course_type='elective', semester = semester6, course_name = course6, ug_pg = ug_pg6)
 		messages.add_message(request,messages.SUCCESS, f'Your Preference submitted')
-	params={'my_preferences':my_preferences,'session':session()}
+	elif session()!= session_input: # Input can only be taken if current sem is equal to session provided in url
+		raise Http404()
+	params={
+		'my_preferences':my_preferences,
+		'session':session(),
+		}
 	return render(request,'select_preference.html',params)
 

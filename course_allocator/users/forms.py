@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from users.models import Profile
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.core.exceptions import ValidationError
+from django.db.models import Q 
 
 class RegisterForm(UserCreationForm):
 	class Meta:
@@ -35,9 +36,8 @@ class ProfileRegisterForm(forms.ModelForm):
 
 	def clean(self):
 		cleaned_data = self.cleaned_data
-		k=Profile.objects.filter(designation=cleaned_data['designation']).filter(department=cleaned_data['department'])
-		if k.count():
-			k = k.first()
+		k=Profile.objects.filter(Q(designation=cleaned_data['designation']) & Q(department=cleaned_data['department']))
+		if k.exists():
 			raise ValidationError(f'{k.user.first_name} {k.user.last_name} is registered as the HOD of your department.')
 
 class UserLoginForm(AuthenticationForm):
