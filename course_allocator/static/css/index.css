@@ -2,6 +2,9 @@
     margin:0;
     padding:0;
 }
+body{
+  background:rgb(251, 231, 181);
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -24,13 +27,16 @@ input[type=number] {
     display: flex;
     justify-content: flex-end;
     padding:20px;
-    background:rgb(29, 226, 226)
+    background:rgb(251, 181, 101);
+    font-size: 18px;
+    font-weight: bold;
 }
 .navigation>a{
     margin:0px 15px;
     text-decoration:none;
     font-weight:1.3em;
     text-transform: uppercase;
+    color: #000000;
 }
 #branch{
     display: none;
@@ -43,6 +49,8 @@ input[type=number] {
     padding: 40px;
     width: 70%;
     min-width: 300px;
+    border-radius: 11px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
   
 #select-preference .tab {
@@ -50,13 +58,17 @@ display: none;
 }
 
 #select-preference button {
-background-color: #4CAF50;
-color: #ffffff;
+background-color: rgb(251, 181, 101);
+color: #000000;;
 border: none;
-padding: 10px 20px;
-font-size: 17px;
-font-family: Raleway;
+margin-top: 11px;
+border-radius: 11px;
+padding: 5px 15px;
+font-size: 21px;
+font-weight: bold;
+/* font-family: Raleway; */
 cursor: pointer;
+text-transform: uppercase;
 }
 
 #select-preference button:hover {
