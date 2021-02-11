@@ -18,7 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allocator',
     'crispy_forms',
-    'users'
+    'users',
+    'easy_pdf'
 ]
 
 MIDDLEWARE = [

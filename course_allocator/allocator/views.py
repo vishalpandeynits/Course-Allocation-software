@@ -18,7 +18,6 @@ from course_allocator.session_detector import session
 from django.db.models import Q
 
 def homepage(request):
-	print("His")
 	if request.user.is_authenticated:
 		profile=get_object_or_404(Profile,user=request.user)
 		if profile.designation=="HOD":
@@ -35,7 +34,9 @@ def home(request,session_input):
 		teachers = Profile.objects.filter(department = profile.department)
 		preferences = Preference.objects.filter(Q(user__profile__in = teachers)).order_by('user','course_type','preference_num')
 		if session_input:
-			preferences = preferences.filter(session__icontains=session_input)
+			preferences = preferences.filter(session=session_input)
+			if not preferences.exists():
+				raise Http404()
 		params = {
 			'preferences':preferences,
 			'teachers':teachers,
@@ -132,4 +133,3 @@ def preference_page(request,session_input):
 		'session':session(),
 		}
 	return render(request,'select_preference.html',params)
-

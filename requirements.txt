@@ -3,3 +3,5 @@ django-contrib-comments==1.9.2
 django-crispy-forms==1.9.2
 Pillow==7.2.0
 reportlab==3.5.59
+WeasyPrint==0.34
+django-easy-pdf==0.2.0

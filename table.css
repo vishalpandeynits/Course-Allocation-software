@@ -1,0 +1,38 @@
+table,th,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th,td {
+    padding: 5px;
+    text-align: left;
+}
+
+table{
+    width: 100%;
+}
+
+.hash1{
+    width: 174px;
+    column-span: 1;
+    
+}
+
+.hash2{
+    width: 115px;
+}
+
+.hash3{
+    width: 149px;
+}
+
+.hash4{
+    width: 317px;
+}
+
+.hash5{
+    width: 69px;
+}
+.hash6{
+    width: 80px;
+}
