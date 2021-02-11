@@ -5,8 +5,9 @@
 {% block content %}
 {% if profile.designation == 'HOD' %}
     <div class="row">
+        
+        {% if sessions %} 
         <div class="col-md-2 col-sm-12">
-            {% if sessions %} 
             <center>
                 <h4> Sessions </h4>
                 {% for session in sessions reversed %}
@@ -15,15 +16,16 @@
                     {% endfor %}
                 {% endfor %}
             </center>
-            {% endif %}
         </div>
+        {% endif %}
 
         <div class="col-md-6 col-sm-12 mx-auto">
             {% if preferences %}
                 <h1 class="text-center"> PREFERENCES SUBMITTED -- {% widthratio preferences|length 6 1 %}</h1>
                 <h4 class="text-center"> Sorted against faculties name </h4>
+                <a href="{% url 'cansolidated-report' session_input %}"> Print consolidated report </a>
             {% else %}
-                <h2 class="text-center"> No submission for this session. </h2>
+                <h2 class="text-center text-danger"> Data not available for this session. </h2>
             {% endif %}
             {% regroup preferences|dictsort:"user.first_name" by display_name as faculties %}
             <div id="preference-container" id="according-to-faculty">
@@ -42,6 +44,7 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Course Type</th>
+                                                <th scope="col"> Choice </th>
                                                 <th scope="col">UG/PG</th>
                                                 <th scope="col">Semester</th>
                                                 <th scope="col">Course Name</th>
@@ -51,6 +54,7 @@
                                         {% for fac in prefer %}
                                             <tr>
                                                 <th scope="row">{{fac.course_type}}</th>
+                                                <th scope="row">{{fac.preference_num}}</th>
                                                 <td>{{fac.ug_pg}}</td>
                                                 <td>{{fac.semester}}</td>
                                                 <td>{{fac.course_name}}</td>
