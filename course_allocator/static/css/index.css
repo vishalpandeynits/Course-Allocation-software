@@ -23,21 +23,7 @@ input[type=number] {
     right:0;
     z-index:100000000000000;
 }
-.navigation{
-    display: flex;
-    justify-content: flex-end;
-    padding:20px;
-    background:rgb(251, 181, 101);
-    font-size: 18px;
-    font-weight: bold;
-}
-.navigation>a{
-    margin:0px 15px;
-    text-decoration:none;
-    font-weight:1.3em;
-    text-transform: uppercase;
-    color: #000000;
-}
+
 #branch{
     display: none;
 }
