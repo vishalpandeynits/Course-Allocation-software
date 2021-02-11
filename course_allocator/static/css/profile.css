@@ -132,9 +132,10 @@ hr{
     width: 100%;
 }
 
-@media screen and (max-width: 814px) {
+@media only screen and (max-width: 651px) {
     .profile {   
       flex-direction: column;
+      margin: 11px;
       height: 100vh;
       width: 100%;
     }
