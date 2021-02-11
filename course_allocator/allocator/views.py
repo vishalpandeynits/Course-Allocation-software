@@ -2,6 +2,7 @@ from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.views.generic.base import TemplateView
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Table
 from reportlab.lib.units import inch
@@ -16,6 +17,7 @@ from users.models import Profile
 import io
 from course_allocator.session_detector import session
 from django.db.models import Q
+from django.views.generic.base import View
 
 def homepage(request):
 	if request.user.is_authenticated:
@@ -133,3 +135,23 @@ def preference_page(request,session_input):
 		'session':session(),
 		}
 	return render(request,'select_preference.html',params)
+
+class Cansolidated(TemplateView):
+	template_name = 'hi.html'
+	context_object_name = 'pdf_data'
+
+	def get(self,request,session_input,*args,**kwargs):
+		context = self.get_context_data(**kwargs)
+		profile = Profile.objects.get(user=request.user)
+		if profile.designation=='HOD':
+			teachers = Profile.objects.filter(department = profile.department)
+			preferences = Preference.objects.filter(Q(user__profile__in = teachers)).order_by('user','course_type','preference_num')
+			if session_input:
+				preferences = preferences.filter(session=session_input)
+				context['preferences']= preferences
+				return self.render_to_response(context)
+
+			if not preferences.exists():
+				raise Http404()
+		else:
+			raise Http404()

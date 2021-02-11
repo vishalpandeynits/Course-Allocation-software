@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.urls import path
 from . import views
 from django.conf import settings
@@ -15,11 +16,12 @@ class Hello(PDFTemplateView):
             title='Hi there!',
             **kwargs
         )
-        
+ 
+
 urlpatterns = [
     path('',views.homepage),
     path('hell', Hello.as_view()),
     path('hod/<str:session_input>',views.home,name="home"),
     path('preference/<str:session_input>',views.preference_page,name="preference"),
-    
+    path('check/<session_input>',views.Cansolidated.as_view())
 ]
