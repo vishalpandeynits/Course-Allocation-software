@@ -1,63 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-#button-container{
-    text-align: center;
-}
-#button-container a{
-    text-decoration: none;
-    margin:0px 20px;
-    font-size: 15px;
-    background: rgb(225, 233, 233);
-    padding:15px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    border-radius: 5px;
-    color: #000000;
-    font-weight: bold;
-}
+       
+        #button-container a,p {
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(176, 183, 184);
+            font-size: 19px;
+        
+            /* padding-right: 10px; */
+            text-align: left;
+            padding-left: 10px;
+            
+        }
 </style>
 <div class="profile">
-    <div class="header">
-        <div class="profilePic">
-            
-        </div>
-        <div class="username">
-            {{ profile.username }}
-        </div>
-        <div class="designation">
-            {{ profile.get_designation_display }}
-        </div>
-    </div>
-    
-    <div class="mid">
-        <div class="head">
-            INFORMATION
-        </div>
+        <div class="mid">
+            <div class="head">
+                INFORMATION
+                <hr>
+            </div>
 
-        <div class="firstrow">
-            <div class="department">
-                Department:
-                <p class="feed">{{ profile.get_department_display }}</p>
+            <div class="Zerothrow">
+                    <div class="username">
+                        Name:
+                        <p class="feed">{{ profile.username }}</p>
+                       <!-- {{ profile.username }} -->
+                    </div>
+                    <div class="designation">
+                        Designation:
+                        <p>HOD</p>
+                        <!-- <p class="feed">{{ profile.get_designation_display }}</p> -->
+                       
+                    </div>
             </div>
-            
-            <div class="email">
-                Email:
-                <p class="feed">{{ profile.user.email }}</p>
-            </div>
-        </div>
+            <div class="firstrow">
+                <div class="department">
+                    Department:
+                    <p class="feed">{{ profile.get_department_display }}</p>
+                </div>
 
-        <div class="secondrow">
-            <div class="phno">
-                Phone:
-                <p class="feed"> {{profile.phone_number}} </p>
+                <div class="email">
+                    Email:
+                    <p class="feed">{{ profile.user.email }}</p>
+                </div>
             </div>
- 
+
+            <div class="secondrow">
+                <div class="phno">
+                    Phone:
+                    <p class="feed"> {{profile.phone_number}} </p>
+                </div>
+            
+		
+                <div id="button-container">
+                    Change Password?
+                    <p>
+			{% if requested_user == user %}
+                        <a href="{% url 'password_change' %}"> Click Here </a>
+			{% endif %}
+                    </p>
+                </div>
+                
+
+            </div>
+
+
         </div>
-        {% if requested_user == user %}
-        <div id="button-container">
-            <a href="{% url 'password_change' %}"> Change Password </a>
-        </div>
-        {% endif %}
-    </div>
 </div>
 {% endblock %}
