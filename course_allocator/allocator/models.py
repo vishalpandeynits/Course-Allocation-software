@@ -17,6 +17,12 @@ class Preference(models.Model):
     def __str__(self):
         return self.user.first_name +" "+self.user.last_name
 
+    def display_name(self):
+        return "%s %s %s" %(self.user.first_name.title(), self.user.last_name.title(), self.user.email )
+
+    def full_name(self):
+        return "%s %s"% (self.user.first_name, self.user.last_name )
+
 @receiver(pre_save,sender=Preference)
 def session_add(sender,instance,*args,**kwargs):
     instance.session = slugify(session_detector.session())

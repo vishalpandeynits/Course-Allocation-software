@@ -18,7 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allocator',
     'crispy_forms',
-    'users'
+    'users',
+    'easy_pdf'
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
-LOGIN_REDIRECT_URL = '/preference/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 MEDIA_ROOT ='media' 

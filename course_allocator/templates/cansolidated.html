@@ -1,0 +1,72 @@
+{% extends "easy_pdf/base.html" %}
+{% block extra_style %}
+<style>
+    html,body{
+        margin:0;
+        padding:0;
+    }
+    img{
+        float:right;
+    }
+    table,th,td{
+        border:1px solid black;
+        border-collapse: collapse;
+        vertical-align: middle;
+        text-align: center;
+    }
+    th,td{
+        padding: 1px;
+    }
+    h1,h2,h3,h4{
+        margin:0;
+        padding:0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .col3,.col4,.col5{
+        width:50px;
+    }
+    .col6{
+        width:200px;
+    }
+    .col1,.col2{
+        width:140px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<center>
+    <h1>NATIONAL INSTITUTE OF TECHNOLOGY SILCHAR</h1>
+    <h2> Cansolidated report on course allotment </h2>
+    <h4> Department: {{ department }} </h4>
+    <h4> Session : {{ session|upper }} </h4>
+</center>
+
+{% regroup preferences|dictsort:"user.first_name" by full_name as faculties %}
+<table>
+    {% if faculties %}
+        <tr>
+            <th class="col1"> Name </th>
+            <th class="col2">Course Type</th>
+            <th class="col3">Choice</th>
+            <th class="col4">UG/PG</th>
+            <th class="col5"> Sem</th>
+            <th class="col6">Course Name</th>
+        </tr>
+        {% for grouper, prefer in faculties %}
+            {% for fac in prefer %}
+            <tr>
+                {% if forloop.counter == 1 %}
+                <th rowspan="6"> {{ grouper }} </th>
+                {% endif %}
+                <th>{{fac.course_type}}</th>
+                <td>{{fac.preference_num }}</td>
+                <td>{{fac.ug_pg}}</td>
+                <td>{{fac.semester}}</td>
+                <td>{{fac.course_name}}</td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

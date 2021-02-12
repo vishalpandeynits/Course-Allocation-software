@@ -11,7 +11,7 @@ body {
 .profile{
     display: flex;
     flex-wrap: nowrap;
-    height: 500px;
+    height: 672px;
     align-items: center;
     justify-content: center;
 }
@@ -22,9 +22,10 @@ body {
     align-items: center;
     width: 30%;
     height: 78%;
-    background-color: rgb(99, 185, 232);
+    background-color: rgb(225, 233, 233);
     padding: 20px;
     box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2), 2px 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 11px;
 }
 
 .profile .mid{
@@ -35,25 +36,16 @@ body {
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(226, 28, 28, 0.2), 17px 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 0px;
+    border-radius: 11px 11px 11px 11px;
 }
 
-.profile .profilePic{
-    border-radius: 50%;
-    width: 184px;
-    height: 185px;
-    background-image: url("/index.jpg");
-    background-size: cover;
-}
-.profile  .username{
+
+/* .profile  .designation{
     font-family: 'PT Sans', sans-serif;
-    margin: 6px;
-    color: white;
-    font-size: 23px;
-}
-.profile  .designation{
-    font-family: 'PT Sans', sans-serif;
-    color: rgb(214, 229, 232);
-}
+    color: rgb(251, 181, 101);
+    font-weight: bold;
+    font-size: 21px;
+} */
 .profile  .button img {
     margin: 26px;
     width: 31px;
@@ -72,8 +64,20 @@ body {
 .profile  hr{
     border: -10px solid rgb(188, 209, 188);
     border-radius: 5px;
-    width: 141.766px;
+    width: 100%;
     margin-top: 1px;
+}
+
+.profile  .Zerothrow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 41%;
+    font-family: 'Oswald', sans-serif;
+    color: rgb(109, 105, 100);
+    font-size: 32px;
+    padding-left: 5%;
+    padding-top: 16px;
 }
 
 .profile  .firstrow{
@@ -84,8 +88,12 @@ body {
     font-family: 'Oswald', sans-serif;
     color: rgb(109, 105, 100);
     font-size: 32px;
-    padding-left: 10px;
+    padding-left:  5%;
     padding-top: 16px;
+}
+
+.profile .username{
+    width: 50%;
 }
 
 .profile .department{
@@ -102,7 +110,7 @@ body {
     font-family: 'Oswald', sans-serif;
     color: rgb(109, 105, 100);
     font-size: 32px;
-    padding-left: 10px;
+    padding-left:  5%;
 }
 .profile .phno{
     width: 50%;
@@ -120,10 +128,14 @@ body {
     padding-right: 10px;
 }
 
+hr{
+    width: 100%;
+}
 
-@media screen and (max-width: 814px) {
+@media only screen and (max-width: 651px) {
     .profile {   
       flex-direction: column;
+      margin: 11px;
       height: 100vh;
       width: 100%;
     }
@@ -135,11 +147,15 @@ body {
         width: 100%;
     }
     .profile hr{
-        width: 122.156px;
+        width: 100%;
     }
     
     .profile .head{
         font-size: 24px;
+    }
+
+    .profile .Zerothrow{
+        font-size: 22px;
     }
 
     .profile .firstrow{

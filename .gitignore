@@ -1,4 +1,6 @@
 .vscode/
 course_allocator/course_allocator/__pycache__/
 course_allocator/allocator/__pycache__/
+course_allocator/users/__pycache__/
+course_allocator/easy_pdf/__pycache__/
 *.sqlite3

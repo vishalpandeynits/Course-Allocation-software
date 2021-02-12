@@ -1,13 +1,20 @@
 <div class="navigation">
-    {% if profile.designation == 'HOD' %}
-    <a href="{% url 'home' 'str' %}">Home </a>
-    {% endif %}
-    {% if user.is_authenticated %}
-        <a href="{% url 'preference' %}"> Preference Page</a>
+    <div id="burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div id="nav-list">
+        {% if profile.designation == 'HOD' %}
+        <a href="{% url 'home' session %}"> All submissions </a>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <a href="{% url 'preference' session %}"> Preference Page</a>
         <a href="{% url 'profile' user.username %}"> {{ user.first_name }} {{user.last_name}}</a>
         <a href="{% url 'logout' %}"> Log Out </a>
-    {% else %}
+        {% else %}
         <a href="{% url 'login' %}">Log In </a>
         <a href="{% url 'signup' %}"> Sign Up </a>
-    {% endif %}
+        {% endif %}
+    </div>
 </div>

@@ -1,62 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
-<style>
-#button-container{
-    text-align: center;
-}
-#button-container a{
+<style>    
+#button-container p {
     text-decoration: none;
-    margin:0px 20px;
-    font-size: 1.4em;
-    background:rgb(225, 233, 233);
-    padding:15px;
-    box-shadow:0 0 20px grey;
-
+    font-size: 19px;
+    text-align: left;
+    padding-left: 10px;
 }
 </style>
 <div class="profile">
-    <div class="header">
-        <div class="profilePic">
-            
-        </div>
-        <div class="username">
-            {{ profile.username }}
-        </div>
-        <div class="designation">
-            {{ profile.get_designation_display }}
-        </div>
-        <div class="button">
-            <a href="#" class="edit"><img src="/84380.svg" alt=""></a>
-        </div>
-    </div>
-    
     <div class="mid">
-        <div class="head">
-            INFORMATION
+        <div class="head">INFORMATION<hr></div>
+        <div class="Zerothrow">
+            <div class="username">
+                Name:<p class="feed">{{ user.first_name|title }} {{ user.last_name }} </p>
+            </div>
+            <div class="designation">
+                Designation:<p class="feed">{{ profile.get_designation_display}} </p>
+            </div>
         </div>
 
         <div class="firstrow">
             <div class="department">
-                Department:
-                <p class="feed">{{ profile.get_department_display }}</p>
+                Department:<p class="feed">{{ profile.get_department_display }}</p>
             </div>
-            
+
             <div class="email">
-                Email:
-                <p class="feed">{{ profile.user.email }}</p>
+                Email: <p class="feed">{{ profile.user.email }}</p>
             </div>
         </div>
 
         <div class="secondrow">
             <div class="phno">
-                Phone:
-                <p class="feed"> {{profile.phone_number}} </p>
+                Phone:<p class="feed"> {{profile.phone_number}} </p>
             </div>
- 
+        
+            <div id="button-container">
+                Change Password?
+                <p>
+                {% if requested_user == user %}
+                    <a class="link-primary" href="{% url 'password_change' %}"> Click Here </a>
+                {% endif %}
+                </p>
+            </div>
         </div>
-        <div id="button-container">
-            <a href="{% url 'password_change' %}"> Change Password </a>
-        </div>
+
     </div>
 </div>
 {% endblock %}

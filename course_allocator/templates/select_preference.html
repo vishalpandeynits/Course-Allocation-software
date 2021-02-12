@@ -26,33 +26,52 @@
             </form>
         </div>
         {% elif my_preferences|length == 6 %}
-        <h1 class="text-center my-4"> YOUR PREFERENCES </h1>
-            <table class="table table-hover table-light">
-                <thead>
-                    <th colspan="4" class="text-center">{{ grouper }}</th>
-                    <tr>
-                        <th scope="col">Course Type</th>
-                        <th scope="col">UG/PG</th>
-                        <th scope="col">Semester</th>
-                        <th scope="col">Course Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for prefer in my_preferences %}
-                    <tr>
-                        <th scope="row">{{prefer.course_type}}</th>
-                        <td>{{prefer.ug_pg}}</td>
-                        <td>{{prefer.semester}}</td>
-                        <td>{{prefer.course_name}}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <center>
-                <form class="mx-auto" method="POST">{% csrf_token %}
-                    <input type="SUBMIT" value="Download in PDF " name="print" class="btn btn-primary">
-                </form>
-            </center>
+
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                {% if sessions %}
+                <center>
+                    <h4> Sessions </h4>
+                    {% for session in sessions reversed %}
+                        {% for i in session %}
+                            <a class="text-capitalize" href="{% url 'preference' i %}"> {{ i }} </a>
+                        {% endfor %}
+                    {% endfor %}
+                </center>
+                {% endif %}
+            </div>
+            <div class="col-md-8 col-sm-12 mx-auto">
+                <h1 class="text-center my-4"> YOUR PREFERENCES </h1>
+                <table class="table table-hover table-light">
+                    <thead>
+                        <th colspan="4" class="text-center">{{ grouper }}</th>
+                        <tr>
+                            <th scope="col">Course Type</th>
+                            <th scope="col">Preference</th>
+                            <th scope="col">UG/PG</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Course Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for prefer in my_preferences %}
+                        <tr>
+                            <th scope="row">{{prefer.course_type}}</th>
+                            <td>{{ prefer.preference_num }}</td>
+                            <td>{{prefer.ug_pg}}</td>
+                            <td>{{prefer.semester}}</td>
+                            <td>{{prefer.course_name}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <center>
+                    <form class="mx-auto" method="POST">{% csrf_token %}
+                        <input type="SUBMIT" value="Download in PDF " name="print" class="btn btn-primary">
+                    </form>
+                </center>
+            </div>
+        </div>
         {% endif %}
     </div>
 </div>
