@@ -28,6 +28,7 @@ def homepage(request):
 
 @login_required
 def home(request,session_input):
+	print("Hi")
 	profile = Profile.objects.get(user=request.user)
 	if profile.designation=='HOD':
 		teachers = Profile.objects.filter(department = profile.department)
@@ -35,7 +36,6 @@ def home(request,session_input):
 		if session_input:
 			preferences = preferences.filter(session=session_input)
 			data = ['-odd-sem','-even-sem']
-
 			flag=0
 			for i in data:
 				if i not in session_input:
@@ -45,7 +45,7 @@ def home(request,session_input):
 
 		params = {
 			'preferences':preferences,
-			'teachers':teachers,
+			'teachers':teachers.filter(designation="HOD")|teachers.order_by('designation'),
 			'session_input':session_input
 			}
 		return render(request,'home.html',params)

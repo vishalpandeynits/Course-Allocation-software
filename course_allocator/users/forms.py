@@ -41,6 +41,10 @@ class ProfileRegisterForm(forms.ModelForm):
 			k = k.first()
 			raise ValidationError(f'{k.user.first_name} {k.user.last_name} is registered as the HOD of your department.')
 
+	def __init__(self, *args, **kwargs):
+		super(ProfileRegisterForm, self).__init__(*args, **kwargs)
+		self.fields['phone_number'].max_value = 9999999999
+
 class UserLoginForm(AuthenticationForm):
 	def __init__(self, *args, **kwargs):
 		super(UserLoginForm, self).__init__(*args, **kwargs)
