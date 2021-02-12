@@ -21,6 +21,8 @@
     display: none;
     cursor: pointer;
     align-self: flex-end;
+    background-color: transparent;
+    border: none;
 }
 .line{
     width: 31px;

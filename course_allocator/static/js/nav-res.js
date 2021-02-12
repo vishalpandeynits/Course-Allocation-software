@@ -1,9 +1,10 @@
-document.getElementById("burger").addEventListener('click', showHide);
+document.getElementById("burger").addEventListener('onclick', showHide);
+var x = document.getElementById("nav-list");
 function showHide(){
-    if(document.getElementById("nav-list").style.display == "none"){
-        document.getElementById("nav-list").style.display = "flex";
+    if(x.style.display != "flex"){
+        x.style.display = "flex";
     }
     else{
-        document.getElementById("nav-list").style.display = "none"
+        x.style.display = "none"
     }
 }
