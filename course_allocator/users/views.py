@@ -66,7 +66,6 @@ def activate(request, uidb64, token,backend='django.contrib.auth.backends.ModelB
         print(user)
         if user is not None:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            print('done')
             return redirect(reverse('preference',kwargs={'session_input':session()}))
         return redirect(reverse('profile',kwargs={'username':user.username}))
     else:
