@@ -62,7 +62,7 @@ def activate(request, uidb64, token,backend='django.contrib.auth.backends.ModelB
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        messages.add_message(request,messages.SUCCESS,'Thank you for your email confirmation. Now you can log in.')
+        messages.add_message(request,messages.SUCCESS,'Thank you for your email confirmation.')
         login(request, user)
         return redirect(reverse('preference',kwargs={'session_input':session()}))
     else:
