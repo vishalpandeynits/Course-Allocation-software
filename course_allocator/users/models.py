@@ -30,6 +30,7 @@ class Profile(models.Model):
     department = models.CharField(max_length=100,choices= department_choices)
     phone_number = models.PositiveIntegerField(validators=[phonevalidate])
     designation = models.CharField(max_length=100,choices=designation_choices)
+
     def __str__(self):
         return self.user.first_name +" "+self.user.last_name
 

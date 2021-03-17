@@ -63,11 +63,8 @@ def activate(request, uidb64, token,backend='django.contrib.auth.backends.ModelB
         user.is_active = True
         user.save()
         messages.add_message(request,messages.SUCCESS,'Thank you for your email confirmation. Now you can log in.')
-        print(user)
-        if user is not None:
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect(reverse('preference',kwargs={'session_input':session()}))
-        return redirect(reverse('profile',kwargs={'username':user.username}))
+        login(request, user)
+        return redirect(reverse('preference',kwargs={'session_input':session()}))
     else:
         messages.add_message(request,messages.WARNING,'Activation link is invalid.')
         return redirect(reverse('home',kwargs={'session_input':session()}))
