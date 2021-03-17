@@ -1,9 +1,9 @@
 <div class="navigation">
-    <div id="burger">
+    <button id="burger" onclick="showHide()">
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
-    </div>
+    </button>
     <div id="nav-list">
         {% if profile.designation == 'HOD' %}
         <a href="{% url 'home' session %}"> All submissions </a>

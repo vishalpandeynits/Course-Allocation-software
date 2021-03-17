@@ -25,7 +25,7 @@
                 </div>
             </form>
         </div>
-        {% elif my_preferences|length == 6 %}
+        {% elif my_preferences|length != 0 %}
 
         <div class="row">
             <div class="col-md-2 col-sm-12">
@@ -33,8 +33,8 @@
                 <center>
                     <h4> Sessions </h4>
                     {% for session in sessions reversed %}
-                        {% for i in session %}
-                            <a class="text-capitalize" href="{% url 'preference' i %}"> {{ i }} </a>
+                        {% for session_input in session %}
+                        <a class="text-capitalize link link-primary m-2 d-block" href="{% url 'preference' session_input %}"> {{ session_input }}</a>
                         {% endfor %}
                     {% endfor %}
                 </center>
@@ -42,6 +42,11 @@
             </div>
             <div class="col-md-8 col-sm-12 mx-auto">
                 <h1 class="text-center my-4"> YOUR PREFERENCES </h1>
+                <center>
+                    <form class="mx-auto" method="POST">{% csrf_token %}
+                        <input type="SUBMIT" value="Download in PDF " name="print" class="btn btn-primary">
+                    </form>
+                </center>
                 <table class="table table-hover table-light">
                     <thead>
                         <th colspan="4" class="text-center">{{ grouper }}</th>
@@ -65,11 +70,6 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <center>
-                    <form class="mx-auto" method="POST">{% csrf_token %}
-                        <input type="SUBMIT" value="Download in PDF " name="print" class="btn btn-primary">
-                    </form>
-                </center>
             </div>
         </div>
         {% endif %}

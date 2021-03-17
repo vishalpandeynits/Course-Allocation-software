@@ -11,37 +11,35 @@ from django.http import Http404
 from .utils import *
 from .models import Preference
 from django.db.models import Q
-from easy_pdf.views import PDFTemplateView
+from easy_pdf.views import PDFTemplateView 
 from course_allocator.session_detector import session
 from users.models import Profile
 import io
 
-def homepage(request):
+def homepage(request,session_input=None):
 	if request.user.is_authenticated:
 		profile=get_object_or_404(Profile,user=request.user)
 		if profile.designation=="HOD":
-			return redirect(reverse('home',kwargs={'session_input':session()}))
+			return redirect(reverse('home',kwargs={'session_input':session_input or session()}))
 		else:
-			return redirect(reverse('preference',kwargs={'session_input':session()}))
+			return redirect(reverse('preference',kwargs={'session_input':session_input or session()}))
 	else:
 		return redirect('login')
 
 @login_required
 def home(request,session_input):
-	print("Hi")
 	profile = Profile.objects.get(user=request.user)
 	if profile.designation=='HOD':
 		teachers = Profile.objects.filter(department = profile.department)
 		preferences = Preference.objects.filter(user__profile__in = teachers).order_by('user','course_type','preference_num')
-		if session_input:
-			preferences = preferences.filter(session=session_input)
-			data = ['-odd-sem','-even-sem']
-			flag=0
-			for i in data:
-				if i not in session_input:
-					flag=1
-			if(flag==0):
-				raise Http404()
+		preferences = preferences.filter(session=session_input)
+		data = ['-odd-sem','-even-sem']
+		flag=0
+		for i in data:
+			if i not in session_input:
+				flag=1
+		if(flag==0):
+			raise Http404()
 
 		params = {
 			'preferences':preferences,
@@ -50,7 +48,7 @@ def home(request,session_input):
 			}
 		return render(request,'home.html',params)
 	else:
-		return redirect(reverse('preference',kwargs={'session_input':session()}))
+		return redirect(reverse('preference',kwargs={'session_input':session_input}))
 
 @login_required
 def preference_page(request,session_input):
@@ -100,10 +98,10 @@ def preference_page(request,session_input):
 		return FileResponse(buffer, as_attachment=True, filename=f'{user.username}-preference.pdf')
 
 	elif request.method=="POST" and not my_preferences.exists():
-		save_preference_data(request)
+		save_preference_data(request,session_input)
 
-	elif session()!= session_input: # Input can only be taken if current sem is equal to session provided in url
-		raise Http404()
+	# elif session()!= session_input: # Input can only be taken if current sem is equal to session provided in url
+	# 	raise Http404()
 
 	params={
 		'my_preferences':my_preferences,

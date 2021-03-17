@@ -25,12 +25,12 @@ def phonevalidate(value):
             params={'value': value},
         )
 
-
 class Profile(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     department = models.CharField(max_length=100,choices= department_choices)
-    phone_number = models.PositiveIntegerField(max_length=10, validators=[phonevalidate])
+    phone_number = models.PositiveIntegerField(validators=[phonevalidate])
     designation = models.CharField(max_length=100,choices=designation_choices)
+
     def __str__(self):
         return self.user.first_name +" "+self.user.last_name
 

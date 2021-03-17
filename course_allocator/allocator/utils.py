@@ -3,6 +3,11 @@ from reportlab.lib.units import inch
 from reportlab.lib import colors
 from .models import Preference
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from .models import Preference
+from django.db.models import Q
+from django.contrib import messages
 
 def table_style():
 	return TableStyle([
@@ -20,7 +25,13 @@ def table_row(forwhich):
     else:
         return ['Preference','UG/PG','Elective Type','Semester','Subject']  
 
-def save_preference_data(request):
+def save_preference_data(request,session_input):
+    user = User.objects.get(username=request.user.username)
+    have_prefernces = Preference.objects.filter(Q(user=user)& Q(session=session_input)).exists()
+    if have_prefernces:
+        messages.add_message(request,messages.INFO,'Preferences already submitted for this session.')
+        return
+
     ug_pg1 = request.POST.get('ug_pg_cc_pre1')
     semester1 = request.POST.get('semester_cc_pre1')
     course1 = request.POST.get('coreCourses_cc_pre1')
@@ -49,10 +60,10 @@ def save_preference_data(request):
     elective_type2 = request.POST.get('electiveType_pre2')
     elective_type3 = request.POST.get('electiveType_pre3')
 
-    Preference.objects.create(user=request.user,preference_num = '1',course_type='core', semester = semester1, course_name = course1, ug_pg = ug_pg1)
-    Preference.objects.create(user=request.user,preference_num = '2',course_type='core', semester = semester2, course_name = course2, ug_pg = ug_pg2)
-    Preference.objects.create(user=request.user,preference_num = '3',course_type='core', semester = semester3, course_name = course3, ug_pg = ug_pg3)
-    Preference.objects.create(user=request.user,preference_num = '1',course_type=elective_type1, semester = semester4, course_name = course4, ug_pg = ug_pg4)
-    Preference.objects.create(user=request.user,preference_num = '2',course_type=elective_type2, semester = semester5, course_name = course5, ug_pg = ug_pg5)
-    Preference.objects.create(user=request.user,preference_num = '3',course_type=elective_type3, semester = semester6, course_name = course6, ug_pg = ug_pg6)
+    Preference.objects.create(user=request.user,preference_num = '1',course_type='core', semester = semester1, course_name = course1, ug_pg = ug_pg1,session=session_input)
+    Preference.objects.create(user=request.user,preference_num = '2',course_type='core', semester = semester2, course_name = course2, ug_pg = ug_pg2,session=session_input)
+    Preference.objects.create(user=request.user,preference_num = '3',course_type='core', semester = semester3, course_name = course3, ug_pg = ug_pg3,session=session_input)
+    Preference.objects.create(user=request.user,preference_num = '1',course_type=elective_type1, semester = semester4, course_name = course4, ug_pg = ug_pg4,session=session_input)
+    Preference.objects.create(user=request.user,preference_num = '2',course_type=elective_type2, semester = semester5, course_name = course5, ug_pg = ug_pg5,session=session_input)
+    Preference.objects.create(user=request.user,preference_num = '3',course_type=elective_type3, semester = semester6, course_name = course6, ug_pg = ug_pg6,session=session_input)
     messages.add_message(request,messages.SUCCESS, f'Your Preference submitted')
