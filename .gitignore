@@ -4,3 +4,5 @@ course_allocator/allocator/__pycache__/
 course_allocator/users/__pycache__/
 course_allocator/easy_pdf/__pycache__/
 *.sqlite3
+.catalyst/
+course-allocation/
