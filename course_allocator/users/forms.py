@@ -44,4 +44,4 @@ class ProfileRegisterForm(forms.ModelForm):
 		k=Profile.objects.filter(Q(designation='HOD') & Q(department=cleaned_data['department']))
 		if k.exists() and cleaned_data['designation']=='HOD':
 			k = k.first()
-			raise ValidationError(f' {k.first_name} {k.last_name} already registred as HOD of this department')
+			raise ValidationError(f' {k.user.first_name} {k.user.last_name} already registred as HOD of this department')
